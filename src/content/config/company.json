@@ -1,0 +1,23 @@
+{
+  "name": "Mon Projet S-Tier",
+  "legalName": "Mon Projet S-Tier SARL",
+  "description": "Application web S-Tier God Mode construite avec Astro V5.",
+  "email": "contact@example.com",
+  "phone": "+33 1 23 45 67 89",
+  "address": {
+    "street": "123 Rue Exemple",
+    "city": "Paris",
+    "postalCode": "75001",
+    "country": "France"
+  },
+  "social": {
+    "facebook": "https://facebook.com/example",
+    "twitter": "https://twitter.com/example",
+    "instagram": "https://instagram.com/example",
+    "linkedin": "https://linkedin.com/company/example"
+  },
+  "siteUrl": "https://example.com",
+  "defaultTitle": "Mon Projet S-Tier",
+  "defaultDescription": "Application web S-Tier God Mode construite avec Astro V5.",
+  "defaultImage": "/og-image.png"
+}

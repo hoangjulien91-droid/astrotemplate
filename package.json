@@ -9,6 +9,21 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.16.9"
+    "@astrojs/react": "^4.4.2",
+    "@astrojs/sitemap": "^3.6.1",
+    "@tailwindcss/vite": "^4.1.18",
+    "astro": "^5.16.9",
+    "astro-seo-schema": "^5.1.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "sharp": "^0.34.5",
+    "tailwindcss": "^4.1.18",
+    "vite-plugin-pwa": "^1.2.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.8",
+    "@types/react-dom": "^19.2.3",
+    "@vite-pwa/astro": "^1.2.0"
   }
 }
