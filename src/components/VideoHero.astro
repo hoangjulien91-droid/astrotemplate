@@ -25,18 +25,8 @@ const {
 
 <section class="video-hero" transition:name="hero">
   <!-- Background Video -->
-  <video
-    class="video-hero__video"
-    autoplay
-    muted
-    loop
-    playsinline
-    poster={posterSrc}
-  >
-    <!-- WebM first (better compression) -->
+  <video class="video-hero__video" autoplay muted loop playsinline>
     <source src={videoSrc} type="video/webm" />
-    <!-- MP4 fallback -->
-    <source src={videoSrc.replace(".webm", ".mp4")} type="video/mp4" />
   </video>
 
   <!-- Gradient Overlay -->
