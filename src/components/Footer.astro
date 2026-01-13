@@ -67,6 +67,13 @@ const socialLinks = [
         © {currentYear}
         {company?.data.name || "Rémi Capdeville"}. Tous droits réservés.
       </p>
+      <p class="footer__credit">
+        Réalisé par <a
+          href="https://ikerketa.fr/"
+          target="_blank"
+          rel="noopener noreferrer">Ikerketa</a
+        >
+      </p>
     </div>
   </div>
 </footer>
@@ -130,6 +137,23 @@ const socialLinks = [
   .footer__copyright {
     font-size: 0.8125rem;
     color: var(--color-text-muted);
+  }
+
+  .footer__credit {
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+    opacity: 0.6;
+  }
+
+  .footer__credit a {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .footer__credit a:hover {
+    color: var(--color-accent);
+    opacity: 1;
   }
 
   @media (min-width: 768px) {
