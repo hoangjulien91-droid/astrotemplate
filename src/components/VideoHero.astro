@@ -1,0 +1,189 @@
+---
+/**
+ * S-TIER — Video Hero Component
+ * Full-screen autoplay video loop with overlay
+ * ZERO JavaScript — Pure HTML5 video
+ */
+import { getEntry } from "astro:content";
+
+interface Props {
+  videoSrc?: string;
+  posterSrc?: string;
+  title?: string;
+  subtitle?: string;
+}
+
+const company = await getEntry("config", "company");
+
+const {
+  videoSrc = "/videos/hero-loop.webm",
+  posterSrc = "/images/hero-poster.jpg",
+  title = company?.data.name || "Rémi Capdeville",
+  subtitle = "Vidéaste Professionnel",
+} = Astro.props;
+---
+
+<section class="video-hero" transition:name="hero">
+  <!-- Background Video -->
+  <video
+    class="video-hero__video"
+    autoplay
+    muted
+    loop
+    playsinline
+    poster={posterSrc}
+  >
+    <!-- WebM first (better compression) -->
+    <source src={videoSrc} type="video/webm" />
+    <!-- MP4 fallback -->
+    <source src={videoSrc.replace(".webm", ".mp4")} type="video/mp4" />
+  </video>
+
+  <!-- Gradient Overlay -->
+  <div class="video-hero__overlay"></div>
+
+  <!-- Content -->
+  <div class="video-hero__content">
+    <h1 class="video-hero__title animate-fade-in-up">{title}</h1>
+    <p class="video-hero__subtitle animate-fade-in-up animate-delay-200">
+      {subtitle}
+    </p>
+
+    <div class="video-hero__cta animate-fade-in-up animate-delay-400">
+      <a href="/portfolio" class="btn btn-primary">
+        Voir mes réalisations
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M5 12h14"></path>
+          <path d="m12 5 7 7-7 7"></path>
+        </svg>
+      </a>
+      <a href="/contact" class="btn btn-ghost">Me contacter</a>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="video-hero__scroll">
+    <div class="video-hero__scroll-line"></div>
+  </div>
+</section>
+
+<style>
+  .video-hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 25vh;
+    overflow: hidden;
+  }
+
+  .video-hero__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .video-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(10, 10, 10, 0.4) 0%,
+      rgba(10, 10, 10, 0.6) 50%,
+      rgba(10, 10, 10, 0.9) 100%
+    );
+    z-index: 1;
+  }
+
+  .video-hero__content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 2rem;
+    max-width: 900px;
+  }
+
+  .video-hero__title {
+    font-size: clamp(3rem, 10vw, 6rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .video-hero__subtitle {
+    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+    color: var(--color-text-secondary);
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .video-hero__cta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Scroll Indicator */
+  .video-hero__scroll {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+
+  .video-hero__scroll-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(
+      to bottom,
+      var(--color-accent) 0%,
+      transparent 100%
+    );
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%,
+    100% {
+      opacity: 0.3;
+      transform: scaleY(0.5);
+    }
+    50% {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 768px) {
+    .video-hero__cta {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .video-hero__cta .btn {
+      width: 100%;
+      max-width: 280px;
+    }
+  }
+</style>

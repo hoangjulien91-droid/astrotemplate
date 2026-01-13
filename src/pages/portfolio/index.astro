@@ -1,0 +1,45 @@
+---
+/**
+ * Portfolio Index — All Projects
+ */
+import Layout from "@/layouts/Layout.astro";
+import PortfolioGrid from "@/components/PortfolioGrid.astro";
+---
+
+<Layout
+  title="Portfolio | Rémi Capdeville"
+  description="Découvrez mes réalisations vidéo : corporate, clips musicaux, mariages et événements."
+>
+  <section class="hero-section">
+    <div class="container">
+      <h1 class="page-title">Portfolio</h1>
+      <p class="page-subtitle">Une sélection de mes réalisations vidéo</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <PortfolioGrid />
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero-section {
+    padding-top: 10rem;
+    padding-bottom: 4rem;
+    text-align: center;
+  }
+
+  .page-title {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    margin-bottom: 1rem;
+  }
+
+  .page-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+</style>

@@ -11,7 +11,7 @@ export default defineConfig({
   // CORE: Static Site Generation (SSG)
   // ============================================
   output: "static",
-  site: "https://example.com", // TODO: Remplacer par l'URL de production
+  site: "https://remicapdeville.fr",
   prefetch: true, // Navigation instantanée
 
   // ============================================
@@ -23,15 +23,15 @@ export default defineConfig({
     AstroPWA({
       registerType: "autoUpdate",
       workbox: {
-        globPatterns: ["**/*.{js,css,html,ico,png,svg,avif,webp}"],
+        globPatterns: ["**/*.{js,css,html,ico,png,svg,avif,webp,mp4,webm}"],
         navigateFallback: "/404",
       },
       manifest: {
-        name: "Mon Projet S-Tier",
-        short_name: "S-Tier",
-        description: "Application S-Tier God Mode",
-        theme_color: "#ffffff",
-        background_color: "#ffffff",
+        name: "Rémi Capdeville | Vidéaste",
+        short_name: "Rémi Capdeville",
+        description: "Vidéaste professionnel - Création de contenus cinématiques",
+        theme_color: "#0A0A0A",
+        background_color: "#0A0A0A",
         display: "standalone",
         icons: [
           {

@@ -1,27 +1,40 @@
 /**
  * S-TIER GOD MODE — Content Collections Configuration
- * 
+ *
  * SSOT (Single Source of Truth) pour toutes les données du site.
- * Chaque donnée (Services, Blog, Config) DOIT résider ici.
- * 
+ * Chaque donnée (Portfolio, Config) DOIT résider ici.
+ *
  * @see https://docs.astro.build/en/guides/content-collections/
  */
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, z } from "astro:content";
 
 // ============================================
 // SCHÉMAS ZOD: Validation Type-Safe
 // ============================================
 
 /**
- * Schéma pour les Services
- * Utilisé pour les pages /services/[slug]
+ * Schéma pour le Portfolio Vidéo
+ * Utilisé pour les pages /portfolio/[slug]
  */
-const servicesSchema = z.object({
+const portfolioSchema = z.object({
   title: z.string(),
   description: z.string(),
-  icon: z.string().optional(),
-  image: z.string().optional(),
-  order: z.number().default(0),
+  client: z.string().optional(),
+  date: z.coerce.date(),
+  thumbnail: z.string(), // Path to thumbnail image
+  videoUrl: z.string().url().optional(), // YouTube URL
+  videoEmbed: z.string().optional(), // YouTube embed ID
+  category: z
+    .enum([
+      "corporate",
+      "event",
+      "music",
+      "commercial",
+      "documentary",
+      "wedding",
+    ])
+    .default("corporate"),
+  tags: z.array(z.string()).default([]),
   featured: z.boolean().default(false),
   draft: z.boolean().default(false),
 });
@@ -35,7 +48,7 @@ const configSchema = z.object({
   name: z.string(),
   legalName: z.string().optional(),
   description: z.string(),
-  
+
   // Contact
   email: z.string().email(),
   phone: z.string(),
@@ -45,15 +58,20 @@ const configSchema = z.object({
     postalCode: z.string(),
     country: z.string(),
   }),
-  
-  // Réseaux Sociaux
-  social: z.object({
-    facebook: z.string().url().optional(),
-    twitter: z.string().url().optional(),
-    instagram: z.string().url().optional(),
-    linkedin: z.string().url().optional(),
-  }).optional(),
-  
+
+  // Réseaux Sociaux (avec YouTube)
+  social: z
+    .object({
+      facebook: z.string().url().optional(),
+      twitter: z.string().url().optional(),
+      instagram: z.string().url().optional(),
+      linkedin: z.string().url().optional(),
+      youtube: z.string().url().optional(),
+      vimeo: z.string().url().optional(),
+      tiktok: z.string().url().optional(),
+    })
+    .optional(),
+
   // SEO & Site
   siteUrl: z.string().url(),
   defaultTitle: z.string(),
@@ -66,12 +84,12 @@ const configSchema = z.object({
 // ============================================
 
 /**
- * Collection Services
- * Type: Fichiers MDX dans src/content/services/
+ * Collection Portfolio
+ * Type: Fichiers MDX dans src/content/portfolio/
  */
-const services = defineCollection({
-  type: 'content',
-  schema: servicesSchema,
+const portfolio = defineCollection({
+  type: "content",
+  schema: portfolioSchema,
 });
 
 /**
@@ -79,7 +97,7 @@ const services = defineCollection({
  * Type: Fichiers JSON dans src/content/config/
  */
 const config = defineCollection({
-  type: 'data',
+  type: "data",
   schema: configSchema,
 });
 
@@ -88,6 +106,6 @@ const config = defineCollection({
 // ============================================
 
 export const collections = {
-  services,
+  portfolio,
   config,
 };

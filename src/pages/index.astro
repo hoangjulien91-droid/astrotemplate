@@ -1,14 +1,139 @@
 ---
-import Welcome from "../components/Welcome.astro";
-import Layout from "../layouts/Layout.astro";
+/**
+ * Homepage — Rémi Capdeville
+ * S-Tier Videographer Portfolio
+ */
+import Layout from "@/layouts/Layout.astro";
+import VideoHero from "@/components/VideoHero.astro";
+import PortfolioGrid from "@/components/PortfolioGrid.astro";
+import { getEntry } from "astro:content";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const company = await getEntry("config", "company");
 ---
 
-<Layout
-  title="Accueil | Mon Projet S-Tier"
-  description="Application S-Tier God Mode construite avec Astro V5."
->
-  <Welcome />
+<Layout transparentNav={true}>
+  <!-- Hero Section -->
+  <VideoHero title={company?.data.name} subtitle="Vidéaste Professionnel" />
+
+  <!-- Featured Portfolio Section -->
+  <section class="section" id="portfolio">
+    <div class="container">
+      <header class="section-header">
+        <h2 class="section-title">Réalisations</h2>
+        <p class="section-subtitle">Une sélection de mes projets récents</p>
+      </header>
+
+      <PortfolioGrid featured={true} limit={3} />
+
+      <div class="section-cta">
+        <a href="/portfolio" class="btn btn-ghost">
+          Voir tous les projets
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 12h14"></path>
+            <path d="m12 5 7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Preview Section -->
+  <section class="section about-preview">
+    <div class="container">
+      <div class="about-preview__content">
+        <h2 class="section-title">À Propos</h2>
+        <p class="about-preview__text">
+          Passionné par l'image et la narration visuelle, je crée des contenus
+          vidéo qui capturent l'essence de chaque projet. Du corporate au clip
+          musical, chaque réalisation est une nouvelle histoire à raconter.
+        </p>
+        <a href="/a-propos" class="btn btn-primary">En savoir plus</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-content glass-card">
+        <h2 class="cta-title">Un projet en tête ?</h2>
+        <p class="cta-text">
+          Discutons ensemble de votre vision et donnons-lui vie.
+        </p>
+        <a href="/contact" class="btn btn-primary">Me contacter</a>
+      </div>
+    </div>
+  </section>
 </Layout>
+
+<style>
+  /* Section Header */
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+  }
+
+  .section-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+  }
+
+  /* About Preview */
+  .about-preview {
+    background: var(--color-bg-secondary);
+  }
+
+  .about-preview__content {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .about-preview__text {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    margin: 1.5rem 0 2.5rem;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    padding-bottom: calc(var(--section-padding) * 1.5);
+  }
+
+  .cta-content {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 3rem 2rem;
+  }
+
+  .cta-title {
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    margin-bottom: 1rem;
+  }
+
+  .cta-text {
+    margin-bottom: 2rem;
+  }
+</style>

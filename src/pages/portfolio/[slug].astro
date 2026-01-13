@@ -1,0 +1,232 @@
+---
+/**
+ * Dynamic Portfolio Project Page
+ * Uses getStaticPaths for static generation
+ */
+import Layout from "@/layouts/Layout.astro";
+import YouTubeFacade from "@/components/YouTubeFacade.astro";
+import PortfolioGrid from "@/components/PortfolioGrid.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("portfolio");
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+interface Props {
+  project: CollectionEntry<"portfolio">;
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+
+// Category labels
+const categoryLabels: Record<string, string> = {
+  corporate: "Corporate",
+  event: "Événementiel",
+  music: "Clip Musical",
+  commercial: "Publicité",
+  documentary: "Documentaire",
+  wedding: "Mariage",
+};
+
+// Format date
+const formattedDate = new Intl.DateTimeFormat("fr-FR", {
+  year: "numeric",
+  month: "long",
+}).format(project.data.date);
+---
+
+<Layout
+  title={`${project.data.title} | Portfolio`}
+  description={project.data.description}
+  ogImage={project.data.thumbnail}
+>
+  <article class="project-page">
+    <!-- Hero -->
+    <header class="project-hero">
+      <div class="container">
+        <span class="project-category"
+          >{categoryLabels[project.data.category]}</span
+        >
+        <h1 class="project-title" transition:name={`portfolio-${project.slug}`}>
+          {project.data.title}
+        </h1>
+        <div class="project-meta">
+          {
+            project.data.client && (
+              <span class="project-client">{project.data.client}</span>
+            )
+          }
+          <span class="project-date">{formattedDate}</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Video Embed -->
+    {
+      project.data.videoEmbed && (
+        <section class="project-video">
+          <div class="container">
+            <YouTubeFacade
+              videoId={project.data.videoEmbed}
+              title={project.data.title}
+            />
+          </div>
+        </section>
+      )
+    }
+
+    <!-- Content -->
+    <section class="project-content section">
+      <div class="container">
+        <div class="prose">
+          <Content />
+        </div>
+      </div>
+    </section>
+
+    <!-- Tags -->
+    {
+      project.data.tags.length > 0 && (
+        <section class="project-tags">
+          <div class="container">
+            <div class="tags-list">
+              {project.data.tags.map((tag: string) => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    <!-- Related Projects -->
+    <section class="section related-projects">
+      <div class="container">
+        <h2 class="section-title">Autres réalisations</h2>
+        <PortfolioGrid limit={3} category={project.data.category} />
+      </div>
+    </section>
+  </article>
+</Layout>
+
+<style>
+  .project-page {
+    padding-top: 8rem;
+  }
+
+  /* Hero */
+  .project-hero {
+    text-align: center;
+    padding-bottom: 3rem;
+  }
+
+  .project-category {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+  }
+
+  .project-title {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    margin-bottom: 1.5rem;
+  }
+
+  .project-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+  }
+
+  /* Video */
+  .project-video {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* Content */
+  .project-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .prose {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+  }
+
+  .prose :global(h2) {
+    color: var(--color-text-primary);
+    font-size: 1.75rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .prose :global(h3) {
+    color: var(--color-text-primary);
+    font-size: 1.25rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .prose :global(p) {
+    margin-bottom: 1.5rem;
+  }
+
+  .prose :global(ul),
+  .prose :global(ol) {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .prose :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  /* Tags */
+  .project-tags {
+    padding: 2rem 0;
+    border-top: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--glass-border);
+  }
+
+  .tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .tag {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 0.375rem 0.875rem;
+    border-radius: 2rem;
+  }
+
+  /* Related */
+  .related-projects {
+    background: var(--color-bg-secondary);
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+</style>

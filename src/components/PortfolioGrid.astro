@@ -1,0 +1,81 @@
+---
+/**
+ * S-TIER — Portfolio Grid Component
+ * Responsive grid of portfolio projects
+ */
+import PortfolioCard from "./PortfolioCard.astro";
+import { getCollection } from "astro:content";
+
+interface Props {
+  featured?: boolean;
+  limit?: number;
+  category?: string;
+}
+
+const { featured = false, limit, category } = Astro.props;
+
+// Fetch portfolio entries
+let projects = await getCollection("portfolio", ({ data }) => {
+  if (data.draft) return false;
+  if (featured && !data.featured) return false;
+  if (category && data.category !== category) return false;
+  return true;
+});
+
+// Sort by date (newest first)
+projects = projects.sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+
+// Apply limit if specified
+if (limit) {
+  projects = projects.slice(0, limit);
+}
+---
+
+{
+  projects.length > 0 ? (
+    <div class="portfolio-grid">
+      {projects.map((project) => (
+        <PortfolioCard
+          title={project.data.title}
+          description={project.data.description}
+          slug={project.slug}
+          thumbnail={project.data.thumbnail}
+          client={project.data.client}
+          category={project.data.category}
+        />
+      ))}
+    </div>
+  ) : (
+    <p class="portfolio-grid__empty">Aucun projet à afficher.</p>
+  )
+}
+
+<style>
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .portfolio-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .portfolio-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  .portfolio-grid__empty {
+    text-align: center;
+    color: var(--color-text-muted);
+    padding: 4rem 0;
+    font-style: italic;
+  }
+</style>

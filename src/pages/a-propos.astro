@@ -1,0 +1,326 @@
+---
+/**
+ * About Page — À Propos
+ */
+import Layout from "@/layouts/Layout.astro";
+import { getEntry } from "astro:content";
+
+const company = await getEntry("config", "company");
+
+const skills = [
+  "Réalisation vidéo",
+  "Direction artistique",
+  "Montage & Post-production",
+  "Étalonnage couleur",
+  "Motion design",
+  "Prise de son",
+];
+
+const equipment = [
+  { category: "Caméras", items: ["Sony A7S III", "Sony FX3", "DJI Pocket 3"] },
+  {
+    category: "Optiques",
+    items: [
+      "Sony 24-70mm f/2.8 GM",
+      "Sony 85mm f/1.4 GM",
+      "Sigma 35mm f/1.4 Art",
+    ],
+  },
+  {
+    category: "Stabilisation",
+    items: ["DJI RS3 Pro", "DJI Mini 4 Pro (Drone)"],
+  },
+  { category: "Audio", items: ["Rode NTG5", "Sennheiser MKE 600", "Zoom H6"] },
+];
+---
+
+<Layout
+  title="À Propos | Rémi Capdeville"
+  description="Découvrez le parcours et l'univers créatif de Rémi Capdeville, vidéaste professionnel."
+>
+  <section class="hero-section">
+    <div class="container">
+      <h1 class="page-title">À Propos</h1>
+      <p class="page-subtitle">Passionné par l'image depuis toujours</p>
+    </div>
+  </section>
+
+  <section class="section about-section">
+    <div class="container">
+      <div class="about-grid">
+        <!-- Portrait placeholder -->
+        <div class="about-portrait">
+          <div class="portrait-placeholder">
+            <span class="portrait-initials">RC</span>
+          </div>
+        </div>
+
+        <!-- Bio -->
+        <div class="about-content">
+          <h2>Mon Histoire</h2>
+          <p>
+            Passionné par l'image et la narration visuelle depuis mon plus jeune
+            âge, j'ai transformé cette passion en métier pour créer des contenus
+            vidéo qui racontent des histoires uniques.
+          </p>
+          <p>
+            Que ce soit pour un film corporate, un clip musical, un mariage ou
+            un événement, j'apporte la même exigence de qualité et de créativité
+            à chaque projet. Mon objectif : capturer l'essence de chaque moment
+            et la sublimer à travers l'image.
+          </p>
+          <p>
+            Basé en France, je travaille sur des projets locaux et
+            internationaux, toujours à la recherche de nouvelles histoires à
+            raconter.
+          </p>
+
+          <!-- Social Links -->
+          <div class="social-links">
+            {
+              company?.data.social?.youtube && (
+                <a
+                  href={company.data.social.youtube}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="social-link"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+                  </svg>
+                  YouTube
+                </a>
+              )
+            }
+            {
+              company?.data.social?.instagram && (
+                <a
+                  href={company.data.social.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="social-link"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                  </svg>
+                  Instagram
+                </a>
+              )
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="section skills-section">
+    <div class="container">
+      <h2 class="section-title">Compétences</h2>
+      <ul class="skills-grid">
+        {skills.map((skill) => <li class="skill-item glass-card">{skill}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Equipment Section -->
+  <section class="section equipment-section">
+    <div class="container">
+      <h2 class="section-title">Équipement</h2>
+      <div class="equipment-grid">
+        {
+          equipment.map((cat) => (
+            <div class="equipment-category glass-card">
+              <h3 class="equipment-title">{cat.category}</h3>
+              <ul class="equipment-list">
+                {cat.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Travaillons ensemble</h2>
+        <p>Vous avez un projet ? Discutons-en !</p>
+        <a href="/contact" class="btn btn-primary">Me contacter</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero-section {
+    padding-top: 10rem;
+    padding-bottom: 4rem;
+    text-align: center;
+  }
+
+  .page-title {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    margin-bottom: 1rem;
+  }
+
+  .page-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-secondary);
+  }
+
+  /* About Grid */
+  .about-grid {
+    display: grid;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  @media (min-width: 768px) {
+    .about-grid {
+      grid-template-columns: 300px 1fr;
+      gap: 4rem;
+    }
+  }
+
+  /* Portrait */
+  .about-portrait {
+    display: flex;
+    justify-content: center;
+  }
+
+  .portrait-placeholder {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    border: 2px solid var(--glass-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .portrait-initials {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--color-accent);
+  }
+
+  /* Bio */
+  .about-content h2 {
+    margin-bottom: 1.5rem;
+  }
+
+  .about-content p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .social-link:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  /* Skills */
+  .skills-section {
+    background: var(--color-bg-secondary);
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .skill-item {
+    text-align: center;
+    font-weight: 500;
+  }
+
+  /* Equipment */
+  .equipment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .equipment-title {
+    font-size: 1.125rem;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+  }
+
+  .equipment-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .equipment-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--glass-border);
+    color: var(--color-text-secondary);
+  }
+
+  .equipment-list li:last-child {
+    border-bottom: none;
+  }
+
+  /* CTA */
+  .cta-section {
+    text-align: center;
+    background: var(--color-bg-secondary);
+  }
+
+  .cta-content h2 {
+    margin-bottom: 0.75rem;
+  }
+
+  .cta-content p {
+    margin-bottom: 2rem;
+  }
+</style>

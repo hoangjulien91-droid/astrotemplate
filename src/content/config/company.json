@@ -1,23 +1,24 @@
 {
-  "name": "Mon Projet S-Tier",
-  "legalName": "Mon Projet S-Tier SARL",
-  "description": "Application web S-Tier God Mode construite avec Astro V5.",
-  "email": "contact@example.com",
-  "phone": "+33 1 23 45 67 89",
+  "name": "Rémi Capdeville",
+  "legalName": "Rémi Capdeville - Vidéaste",
+  "description": "Vidéaste professionnel passionné par l'image et la narration visuelle. Création de contenus vidéo cinématiques pour marques, événements et projets créatifs.",
+  
+  "email": "contact@remicapdeville.fr",
+  "phone": "+33 6 00 00 00 00",
   "address": {
-    "street": "123 Rue Exemple",
-    "city": "Paris",
-    "postalCode": "75001",
+    "street": "",
+    "city": "France",
+    "postalCode": "",
     "country": "France"
   },
+  
   "social": {
-    "facebook": "https://facebook.com/example",
-    "twitter": "https://twitter.com/example",
-    "instagram": "https://instagram.com/example",
-    "linkedin": "https://linkedin.com/company/example"
+    "youtube": "https://www.youtube.com/@RémiCapdeville",
+    "instagram": "https://www.instagram.com/remicapdeville/"
   },
-  "siteUrl": "https://example.com",
-  "defaultTitle": "Mon Projet S-Tier",
-  "defaultDescription": "Application web S-Tier God Mode construite avec Astro V5.",
-  "defaultImage": "/og-image.png"
+  
+  "siteUrl": "https://remicapdeville.fr",
+  "defaultTitle": "Rémi Capdeville | Vidéaste Professionnel",
+  "defaultDescription": "Vidéaste professionnel spécialisé dans la création de contenus cinématiques. Découvrez mon portfolio et mes réalisations vidéo.",
+  "defaultImage": "/og-image.jpg"
 }
