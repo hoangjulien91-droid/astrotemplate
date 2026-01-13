@@ -270,35 +270,39 @@ const currentPath = Astro.url.pathname;
 </style>
 
 <script>
-  // Minimal vanilla JS for scroll effect and mobile menu
-  // This is acceptable as it's progressive enhancement
-  const navbar = document.querySelector(".navbar");
-  const mobileToggle = document.querySelector(".navbar__mobile-toggle");
-  const mobileMenu = document.getElementById("mobile-menu");
+  // Re-run on every page navigation (View Transitions compatible)
+  document.addEventListener("astro:page-load", () => {
+    const navbar = document.querySelector(".navbar");
+    const mobileToggle = document.querySelector(".navbar__mobile-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
 
-  // Scroll effect
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-      navbar?.classList.add("scrolled");
-    } else {
-      navbar?.classList.remove("scrolled");
-    }
-  });
+    // Scroll effect
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        navbar?.classList.add("scrolled");
+      } else {
+        navbar?.classList.remove("scrolled");
+      }
+    };
 
-  // Mobile menu toggle
-  mobileToggle?.addEventListener("click", () => {
-    const isOpen = mobileMenu?.getAttribute("aria-hidden") === "false";
-    mobileMenu?.setAttribute("aria-hidden", isOpen ? "true" : "false");
-    mobileToggle.setAttribute("aria-expanded", isOpen ? "false" : "true");
-    document.body.style.overflow = isOpen ? "" : "hidden";
-  });
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Run once on load
 
-  // Close mobile menu on link click
-  mobileMenu?.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      mobileMenu.setAttribute("aria-hidden", "true");
-      mobileToggle?.setAttribute("aria-expanded", "false");
-      document.body.style.overflow = "";
+    // Mobile menu toggle
+    mobileToggle?.addEventListener("click", () => {
+      const isOpen = mobileMenu?.getAttribute("aria-hidden") === "false";
+      mobileMenu?.setAttribute("aria-hidden", isOpen ? "true" : "false");
+      mobileToggle.setAttribute("aria-expanded", isOpen ? "false" : "true");
+      document.body.style.overflow = isOpen ? "" : "hidden";
+    });
+
+    // Close mobile menu on link click
+    mobileMenu?.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.setAttribute("aria-hidden", "true");
+        mobileToggle?.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+      });
     });
   });
 </script>
