@@ -17,10 +17,10 @@
   --color-bg-secondary: #111111;
   --color-bg-tertiary: #1a1a1a;
 
-  /* Text Colors */
-  --color-text-primary: #fafafa;
-  --color-text-secondary: #a3a3a3;
-  --color-text-muted: #737373;
+  /* Text Colors - WCAG AA Compliant */
+  --color-text-primary: #FAFAFA;
+  --color-text-secondary: #C4C4C4; /* Improved from #A3A3A3 for better contrast */
+  --color-text-muted: #9A9A9A; /* Improved from #737373 for better contrast */
 
   /* Accent Colors - Warm Amber/Gold */
   --color-accent: #f59e0b;
