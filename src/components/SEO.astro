@@ -12,40 +12,40 @@
  * @usage <SEO title="Ma Page" description="Description" type="WebPage" />
  */
 import { Schema } from "astro-seo-schema";
+import { getEntry } from "astro:content";
 
 interface Props {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   canonical?: string;
   ogImage?: string;
-  ogType?: "website" | "article" | "product";
-  type?:
-    | "WebPage"
-    | "Article"
-    | "Product"
-    | "LocalBusiness"
-    | "ProfessionalService";
+  ogType?: "website" | "article" | "video.other";
+  type?: "WebPage" | "VideoObject" | "Person" | "CreativeWork";
   publishedTime?: string;
   modifiedTime?: string;
-  author?: string;
   noIndex?: boolean;
 }
 
+// SSOT: Company data from Content Collections
+const company = await getEntry("config", "company");
+const siteUrl = company?.data.siteUrl || "https://remicapdeville.fr";
+const siteName = company?.data.name || "Rémi Capdeville";
+
 const {
-  title,
-  description,
+  title = company?.data.defaultTitle || "Rémi Capdeville | Vidéaste",
+  description = company?.data.defaultDescription || "Vidéaste professionnel",
   canonical = Astro.url.href,
-  ogImage = "/og-image.png",
+  ogImage = company?.data.defaultImage || "/og-image.jpg",
   ogType = "website",
   type = "WebPage",
   publishedTime,
   modifiedTime,
-  author,
   noIndex = false,
 } = Astro.props;
 
-const siteUrl = "https://example.com"; // TODO: Récupérer depuis Content Collection config
-const siteName = "Mon Projet S-Tier";
+const fullOgImage = ogImage.startsWith("http")
+  ? ogImage
+  : `${siteUrl}${ogImage}`;
 ---
 
 <!-- SEO Meta Tags -->
@@ -61,10 +61,7 @@ const siteName = "Mon Projet S-Tier";
 <meta property="og:url" content={canonical} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta
-  property="og:image"
-  content={ogImage.startsWith("http") ? ogImage : `${siteUrl}${ogImage}`}
-/>
+<meta property="og:image" content={fullOgImage} />
 <meta property="og:image:alt" content={title} />
 <meta property="og:locale" content="fr_FR" />
 
@@ -78,18 +75,32 @@ const siteName = "Mon Projet S-Tier";
     <meta property="article:modified_time" content={modifiedTime} />
   )
 }
-{author && <meta property="article:author" content={author} />}
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
-<meta
-  name="twitter:image"
-  content={ogImage.startsWith("http") ? ogImage : `${siteUrl}${ogImage}`}
+<meta name="twitter:image" content={fullOgImage} />
+
+<!-- JSON-LD Schema.org: Person (Vidéaste) -->
+<Schema
+  item={{
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${siteUrl}/#person`,
+    name: siteName,
+    url: siteUrl,
+    image: fullOgImage,
+    description: company?.data.description,
+    jobTitle: "Vidéaste Professionnel",
+    sameAs: [
+      company?.data.social?.youtube,
+      company?.data.social?.instagram,
+    ].filter(Boolean),
+  }}
 />
 
-<!-- JSON-LD Schema.org -->
+<!-- JSON-LD Schema.org: WebPage -->
 <Schema
   item={{
     "@context": "https://schema.org",
@@ -97,15 +108,15 @@ const siteName = "Mon Projet S-Tier";
     name: title,
     description: description,
     url: canonical,
-    image: ogImage.startsWith("http") ? ogImage : `${siteUrl}${ogImage}`,
-    ...(type === "Article" && publishedTime
+    image: fullOgImage,
+    author: {
+      "@type": "Person",
+      "@id": `${siteUrl}/#person`,
+    },
+    ...(publishedTime
       ? {
           datePublished: publishedTime,
           dateModified: modifiedTime || publishedTime,
-          author: {
-            "@type": "Person",
-            name: author || siteName,
-          },
         }
       : {}),
   }}

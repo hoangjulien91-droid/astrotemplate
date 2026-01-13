@@ -2,8 +2,8 @@
 /**
  * S-TIER — Portfolio Card Component
  * Individual project card with hover reveal effect
+ * Note: Using native img with sizes for external URLs (Image component requires local imports)
  */
-import { Image } from "astro:assets";
 
 interface Props {
   title: string;
@@ -39,6 +39,9 @@ const categoryLabels: Record<string, string> = {
       class="portfolio-card__image"
       loading="lazy"
       decoding="async"
+      width="640"
+      height="360"
+      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
     />
     <div class="portfolio-card__overlay">
       <span class="portfolio-card__category"
