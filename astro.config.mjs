@@ -23,8 +23,10 @@ export default defineConfig({
     AstroPWA({
       registerType: "autoUpdate",
       workbox: {
-        globPatterns: ["**/*.{js,css,html,ico,png,svg,avif,webp,mp4,webm}"],
+        globPatterns: ["**/*.{js,css,html,ico,png,svg,avif,webp}"],
+        globIgnores: ["**/videos/**"],
         navigateFallback: "/404",
+        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024, // 5 MB
       },
       manifest: {
         name: "Rémi Capdeville | Vidéaste",
