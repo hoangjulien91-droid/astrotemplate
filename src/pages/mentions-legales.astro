@@ -1,0 +1,137 @@
+---
+/**
+ * Mentions Légales
+ * S-Tier compliant legal page
+ */
+import Layout from "@/layouts/Layout.astro";
+import { getEntry } from "astro:content";
+
+const company = await getEntry("config", "company");
+---
+
+<Layout
+  title="Mentions Légales | Rémi Capdeville"
+  description="Mentions légales du site remicapdeville.fr"
+  noIndex={true}
+>
+  <section class="legal-page">
+    <div class="container">
+      <h1>Mentions Légales</h1>
+
+      <article class="legal-content">
+        <section>
+          <h2>1. Éditeur du site</h2>
+          <p>
+            <strong>Nom :</strong>
+            {company?.data.name || "Rémi Capdeville"}<br />
+            <strong>Statut :</strong> Auto-entrepreneur / Vidéaste professionnel<br
+            />
+            <strong>Email :</strong>
+            <a href={`mailto:${company?.data.email}`}>{company?.data.email}</a
+            ><br />
+            <strong>Téléphone :</strong>
+            <a href={`tel:${company?.data.phone?.replace(/\s/g, "")}`}
+              >{company?.data.phone}</a
+            >
+          </p>
+        </section>
+
+        <section>
+          <h2>2. Hébergement</h2>
+          <p>
+            <strong>Hébergeur :</strong> Cloudflare, Inc.<br />
+            <strong>Adresse :</strong> 101 Townsend St, San Francisco, CA 94107, États-Unis<br
+            />
+            <strong>Site web :</strong>
+            <a
+              href="https://www.cloudflare.com"
+              target="_blank"
+              rel="noopener noreferrer">www.cloudflare.com</a
+            >
+          </p>
+        </section>
+
+        <section>
+          <h2>3. Propriété intellectuelle</h2>
+          <p>
+            L'ensemble du contenu de ce site (textes, images, vidéos, logos,
+            graphismes) est la propriété exclusive de {
+              company?.data.name || "Rémi Capdeville"
+            }, sauf mention contraire. Toute reproduction, distribution,
+            modification ou utilisation sans autorisation préalable écrite est
+            strictement interdite.
+          </p>
+        </section>
+
+        <section>
+          <h2>4. Responsabilité</h2>
+          <p>
+            Les informations fournies sur ce site sont présentées à titre
+            indicatif. L'éditeur ne saurait être tenu responsable des erreurs ou
+            omissions, ni des dommages directs ou indirects résultant de
+            l'utilisation du site.
+          </p>
+        </section>
+
+        <section>
+          <h2>5. Liens externes</h2>
+          <p>
+            Ce site peut contenir des liens vers des sites externes. L'éditeur
+            décline toute responsabilité quant au contenu de ces sites tiers.
+          </p>
+        </section>
+
+        <section>
+          <h2>6. Droit applicable</h2>
+          <p>
+            Les présentes mentions légales sont régies par le droit français. En
+            cas de litige, les tribunaux français seront seuls compétents.
+          </p>
+        </section>
+      </article>
+
+      <p class="legal-date">Dernière mise à jour : Janvier 2026</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .legal-page {
+    padding-top: 10rem;
+    padding-bottom: var(--section-padding);
+  }
+
+  .legal-page h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 3rem;
+  }
+
+  .legal-content {
+    max-width: 800px;
+  }
+
+  .legal-content section {
+    margin-bottom: 2.5rem;
+  }
+
+  .legal-content h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--color-accent);
+  }
+
+  .legal-content p {
+    line-height: 1.8;
+  }
+
+  .legal-content a {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+
+  .legal-date {
+    margin-top: 3rem;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+</style>

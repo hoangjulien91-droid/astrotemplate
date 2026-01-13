@@ -54,6 +54,12 @@ const socialLinks = [
       }
     </div>
 
+    <!-- Legal Links -->
+    <nav class="footer__legal" aria-label="Liens légaux">
+      <a href="/mentions-legales">Mentions légales</a>
+      <a href="/politique-confidentialite">Confidentialité</a>
+    </nav>
+
     <!-- Copyright -->
     <div class="footer__copyright">
       <p>
@@ -131,5 +137,22 @@ const socialLinks = [
       justify-content: space-between;
       text-align: left;
     }
+  }
+
+  /* Legal Links */
+  .footer__legal {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .footer__legal a {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer__legal a:hover {
+    color: var(--color-accent);
   }
 </style>

@@ -1,0 +1,148 @@
+---
+/**
+ * Politique de Confidentialité
+ * S-Tier compliant privacy policy page
+ */
+import Layout from "@/layouts/Layout.astro";
+import { getEntry } from "astro:content";
+
+const company = await getEntry("config", "company");
+---
+
+<Layout
+  title="Politique de Confidentialité | Rémi Capdeville"
+  description="Politique de confidentialité et protection des données personnelles"
+  noIndex={true}
+>
+  <section class="legal-page">
+    <div class="container">
+      <h1>Politique de Confidentialité</h1>
+
+      <article class="legal-content">
+        <section>
+          <h2>1. Collecte des données</h2>
+          <p>
+            Les données personnelles collectées sur ce site (nom, email,
+            téléphone) sont uniquement utilisées pour répondre à vos demandes de
+            contact et ne sont jamais transmises à des tiers.
+          </p>
+        </section>
+
+        <section>
+          <h2>2. Responsable du traitement</h2>
+          <p>
+            <strong>Responsable :</strong>
+            {company?.data.name || "Rémi Capdeville"}<br />
+            <strong>Email :</strong>
+            <a href={`mailto:${company?.data.email}`}>{company?.data.email}</a>
+          </p>
+        </section>
+
+        <section>
+          <h2>3. Finalités du traitement</h2>
+          <p>Vos données sont collectées pour :</p>
+          <ul>
+            <li>Répondre à vos demandes de contact</li>
+            <li>Vous envoyer des devis et informations sur mes services</li>
+            <li>Assurer le suivi de nos échanges</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4. Durée de conservation</h2>
+          <p>
+            Vos données sont conservées pendant une durée maximale de 3 ans à
+            compter de notre dernier échange.
+          </p>
+        </section>
+
+        <section>
+          <h2>5. Vos droits (RGPD)</h2>
+          <p>Conformément au RGPD, vous disposez des droits suivants :</p>
+          <ul>
+            <li>Droit d'accès à vos données personnelles</li>
+            <li>Droit de rectification</li>
+            <li>Droit à l'effacement ("droit à l'oubli")</li>
+            <li>Droit à la portabilité</li>
+            <li>Droit d'opposition</li>
+          </ul>
+          <p>
+            Pour exercer ces droits, contactez-moi à :
+            <a href={`mailto:${company?.data.email}`}>{company?.data.email}</a>
+          </p>
+        </section>
+
+        <section>
+          <h2>6. Cookies</h2>
+          <p>
+            Ce site utilise uniquement des cookies techniques essentiels au
+            fonctionnement du site. Aucun cookie publicitaire ou de tracking
+            n'est utilisé.
+          </p>
+        </section>
+
+        <section>
+          <h2>7. Sécurité</h2>
+          <p>
+            Ce site est hébergé sur Cloudflare avec certificat SSL/TLS. Toutes
+            les communications sont chiffrées via HTTPS.
+          </p>
+        </section>
+      </article>
+
+      <p class="legal-date">Dernière mise à jour : Janvier 2026</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .legal-page {
+    padding-top: 10rem;
+    padding-bottom: var(--section-padding);
+  }
+
+  .legal-page h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 3rem;
+  }
+
+  .legal-content {
+    max-width: 800px;
+  }
+
+  .legal-content section {
+    margin-bottom: 2.5rem;
+  }
+
+  .legal-content h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--color-accent);
+  }
+
+  .legal-content p {
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .legal-content ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+
+  .legal-content li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+  }
+
+  .legal-content a {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+
+  .legal-date {
+    margin-top: 3rem;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+</style>
