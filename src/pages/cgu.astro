@@ -1,0 +1,142 @@
+---
+/**
+ * Conditions Générales d'Utilisation (CGU)
+ * S-Tier compliant terms of service page
+ */
+import Layout from "@/layouts/Layout.astro";
+import { getEntry } from "astro:content";
+
+const company = await getEntry("config", "company");
+---
+
+<Layout
+  title="Conditions Générales d'Utilisation | Rémi Capdeville"
+  description="Conditions générales d'utilisation du site remicapdeville.fr"
+  noIndex={true}
+>
+  <section class="legal-page">
+    <div class="container">
+      <h1>Conditions Générales d'Utilisation</h1>
+
+      <article class="legal-content">
+        <section>
+          <h2>1. Objet</h2>
+          <p>
+            Les présentes Conditions Générales d'Utilisation (CGU) ont pour
+            objet de définir les modalités de mise à disposition des services du
+            site <em>remicapdeville.fr</em>
+            et les conditions d'utilisation du service par l'Utilisateur.
+          </p>
+        </section>
+
+        <section>
+          <h2>2. Accès au site</h2>
+          <p>
+            Le site est accessible gratuitement en tout lieu à tout Utilisateur
+            ayant un accès à Internet. Tous les frais supportés par
+            l'Utilisateur pour accéder au service (matériel informatique,
+            logiciels, connexion Internet, etc.) sont à sa charge.
+          </p>
+        </section>
+
+        <section>
+          <h2>3. Propriété intellectuelle</h2>
+          <p>
+            Les marques, logos, signes ainsi que tout le contenu du site
+            (textes, images, sons, vidéos) font l'objet d'une protection par le
+            Code de la propriété intellectuelle et plus particulièrement par le
+            droit d'auteur.
+          </p>
+          <p>
+            L'Utilisateur doit solliciter l'autorisation préalable du site pour
+            toute reproduction, publication, copie des différents contenus. Il
+            s'engage à une utilisation des contenus du site dans un cadre
+            strictement privé, toute utilisation à des fins commerciales et
+            publicitaires est strictement interdite.
+          </p>
+        </section>
+
+        <section>
+          <h2>4. Responsabilité</h2>
+          <p>
+            Les sources des informations diffusées sur le site <em
+              >remicapdeville.fr</em
+            > sont réputées fiables mais le site ne garantit pas qu'il soit exempt
+            de défauts, d'erreurs ou d'omissions.
+          </p>
+          <p>
+            Le site ne peut être tenu pour responsable d’éventuels virus qui
+            pourraient infecter l’ordinateur ou tout matériel informatique de
+            l’Internaute, suite à une utilisation, à l’accès, ou au
+            téléchargement provenant de ce site.
+          </p>
+        </section>
+
+        <section>
+          <h2>5. Liens hypertextes</h2>
+          <p>
+            Des liens hypertextes peuvent être présents sur le site.
+            L’Utilisateur est informé qu’en cliquant sur ces liens, il sortira
+            du site <em>remicapdeville.fr</em>. Ce dernier n’a pas de contrôle
+            sur les pages web sur lesquelles aboutissent ces liens et ne
+            saurait, en aucun cas, être responsable de leur contenu.
+          </p>
+        </section>
+
+        <section>
+          <h2>6. Droit applicable et juridiction compétente</h2>
+          <p>
+            La législation française s'applique au présent contrat. En cas
+            d'absence de résolution amiable d'un litige né entre les parties,
+            les tribunaux français seront seuls compétents pour en connaître.
+          </p>
+        </section>
+      </article>
+
+      <p class="legal-date">Dernière mise à jour : Janvier 2026</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .legal-page {
+    padding-top: 10rem;
+    padding-bottom: var(--section-padding);
+  }
+
+  .legal-page h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 3rem;
+  }
+
+  .legal-content {
+    max-width: 800px;
+  }
+
+  .legal-content section {
+    margin-bottom: 2.5rem;
+  }
+
+  .legal-content h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--color-accent);
+  }
+
+  .legal-content p {
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .legal-content em {
+    color: var(--color-text-primary);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .legal-date {
+    margin-top: 3rem;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+</style>
