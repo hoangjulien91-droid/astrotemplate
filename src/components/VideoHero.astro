@@ -68,6 +68,19 @@ const {
   </div>
 </section>
 
+<script>
+  // Force video play after View Transitions
+  document.addEventListener("astro:page-load", () => {
+    const video = document.querySelector(
+      ".video-hero__video"
+    ) as HTMLVideoElement;
+    if (video) {
+      video.currentTime = 0;
+      video.play().catch(() => {});
+    }
+  });
+</script>
+
 <style>
   .video-hero {
     position: relative;
