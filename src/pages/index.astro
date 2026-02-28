@@ -4,8 +4,9 @@
  * S-Tier Videographer Portfolio
  */
 import Layout from "@/layouts/Layout.astro";
-import VideoHero from "@/components/VideoHero.astro";
-import PortfolioGrid from "@/components/PortfolioGrid.astro";
+import HeroSection from "@/components/HeroSection.astro";
+import ServicesGrid from "@/components/ServicesGrid.astro";
+import AboutStephane from "@/components/AboutStephane.astro";
 import { getEntry } from "astro:content";
 
 const company = await getEntry("config", "company");
@@ -13,64 +14,101 @@ const company = await getEntry("config", "company");
 
 <Layout transparentNav={true}>
   <!-- Hero Section -->
-  <VideoHero title={company?.data.name} subtitle="Vidéaste Professionnel" />
+  <HeroSection bgVideoSrc="" bgImageSrc="/images/dj_hero_background.png" />
 
-  <!-- Featured Portfolio Section -->
-  <section class="section" id="portfolio">
+  <!-- Trust Bar (Marquee) -->
+  <div
+    class="trust-bar bg-bg-secondary/50 border-y border-glass-border overflow-hidden py-4"
+  >
+    <div
+      class="marquee flex whitespace-nowrap items-center text-text-muted font-display text-sm tracking-widest uppercase"
+    >
+      <div class="marquee-content flex items-center space-x-12 animate-scroll">
+        <span>Bayonne</span>
+        <span class="text-accent">✦</span>
+        <span>Anglet</span>
+        <span class="text-accent">✦</span>
+        <span>Biarritz</span>
+        <span class="text-accent">✦</span>
+        <span>Pau</span>
+        <span class="text-accent">✦</span>
+        <span>Dax</span>
+        <span class="text-accent">✦</span>
+        <span>Mont-de-Marsan</span>
+        <span class="text-accent">✦</span>
+        <span>Bordeaux</span>
+        <span class="text-accent">✦</span>
+        <span>Toulouse</span>
+        <span class="text-accent">✦</span>
+        <span>La Rochelle</span>
+        <span class="text-accent">✦</span>
+      </div>
+      <div
+        class="marquee-content flex items-center space-x-12 animate-scroll"
+        aria-hidden="true"
+      >
+        <span>Bayonne</span>
+        <span class="text-accent">✦</span>
+        <span>Anglet</span>
+        <span class="text-accent">✦</span>
+        <span>Biarritz</span>
+        <span class="text-accent">✦</span>
+        <span>Pau</span>
+        <span class="text-accent">✦</span>
+        <span>Dax</span>
+        <span class="text-accent">✦</span>
+        <span>Mont-de-Marsan</span>
+        <span class="text-accent">✦</span>
+        <span>Bordeaux</span>
+        <span class="text-accent">✦</span>
+        <span>Toulouse</span>
+        <span class="text-accent">✦</span>
+        <span>La Rochelle</span>
+        <span class="text-accent">✦</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Services Section -->
+  <section class="section" id="services">
     <div class="container">
       <header class="section-header">
-        <h2 class="section-title">Réalisations</h2>
-        <p class="section-subtitle">Une sélection de mes projets récents</p>
+        <h2 class="section-title">Mes Prestations</h2>
+        <p class="section-subtitle">
+          Découvrez mes offres sur mesure pour tous vos événements
+        </p>
       </header>
 
-      <PortfolioGrid featured={true} limit={3} />
-
-      <div class="section-cta">
-        <a href="/portfolio" class="btn btn-ghost">
-          Voir tous les projets
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M5 12h14"></path>
-            <path d="m12 5 7 7-7 7"></path>
-          </svg>
-        </a>
-      </div>
+      <ServicesGrid />
     </div>
   </section>
 
-  <!-- About Preview Section -->
-  <section class="section about-preview">
-    <div class="container">
-      <div class="about-preview__content">
-        <h2 class="section-title">À Propos</h2>
-        <p class="about-preview__text">
-          Passionné par l'image et la narration visuelle, je crée des contenus
-          vidéo qui capturent l'essence de chaque projet. Du corporate au clip
-          musical, chaque réalisation est une nouvelle histoire à raconter.
-        </p>
-        <a href="/a-propos" class="btn btn-primary">En savoir plus</a>
-      </div>
-    </div>
-  </section>
+  <!-- About Section -->
+  <AboutStephane />
 
   <!-- CTA Section -->
-  <section class="section cta-section">
-    <div class="container">
-      <div class="cta-content glass-card">
-        <h2 class="cta-title">Un projet en tête ?</h2>
-        <p class="cta-text">
-          Discutons ensemble de votre vision et donnons-lui vie.
+  <section class="section cta-section relative">
+    <div class="container relative z-10">
+      <div
+        class="cta-content glass-card relative overflow-hidden border border-accent/20"
+      >
+        <div
+          class="absolute inset-0 bg-linear-to-r from-accent/5 via-transparent to-accent/5 pointer-events-none"
+        >
+        </div>
+        <h2 class="cta-title font-display font-bold text-4xl mb-4">
+          Prêt à créer l'événement de vos rêves ?
+        </h2>
+        <p class="cta-text text-lg text-text-secondary mb-8 max-w-2xl mx-auto">
+          Je me déplace partout en Nouvelle-Aquitaine pour donner vie à votre
+          vision et faire danser vos invités jusqu'au bout de la nuit.
         </p>
-        <a href="/contact" class="btn btn-primary">Me contacter</a>
+        <a
+          href="/contact"
+          class="btn btn-primary text-lg px-8 py-4 shadow-[0_0_20px_rgba(234,179,8,0.3)] hover:shadow-[0_0_30px_rgba(234,179,8,0.5)] transition-shadow"
+        >
+          Demander mon devis sur mesure
+        </a>
       </div>
     </div>
   </section>
@@ -129,11 +167,33 @@ const company = await getEntry("config", "company");
   }
 
   .cta-title {
-    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    font-size: clamp(1.5rem, 4vw, 2.75rem);
     margin-bottom: 1rem;
+    color: var(--color-text-primary);
   }
 
   .cta-text {
     margin-bottom: 2rem;
+  }
+
+  /* Marquee Animation */
+  .anchor-marquee {
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+  }
+
+  .animate-scroll {
+    animation: scrollText 20s linear infinite;
+    padding-left: 3rem; /* Same as the space-x-12 equivalent */
+  }
+
+  @keyframes scrollText {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
   }
 </style>

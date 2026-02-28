@@ -1,0 +1,270 @@
+---
+/**
+ * Page Mon Histoire - DJ Steef Line Sono
+ */
+import Layout from "@/layouts/Layout.astro";
+import { getEntry } from "astro:content";
+
+const company = await getEntry("config", "company");
+---
+
+<Layout
+  title={`Mon Histoire | ${company?.data.name}`}
+  description="Découvrez l'histoire et l'expertise de Stéphane Dardy, DJ Steef Line Sono, fort de plus de 41 années d'expérience."
+>
+  <!-- Hero Section pour Mon Histoire -->
+  <section class="section page-header relative overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img
+        src="/images/dj-history-vintage.png"
+        alt="DJ Steef Line Sono aux platines"
+        class="w-full h-full object-cover filter brightness-50"
+        onerror="this.src='/images/dj_hero_background.png'"
+      />
+      <div
+        class="absolute inset-0 bg-linear-to-b from-black/80 via-black/50 to-bg-primary"
+      >
+      </div>
+    </div>
+
+    <div class="container relative z-10 text-center">
+      <h1 class="page-title animate-fade-in-up">Mon histoire, mon expertise</h1>
+      <p class="page-subtitle animate-fade-in-up animate-delay-200">
+        DJ Steef Line Sono
+      </p>
+    </div>
+  </section>
+
+  <section class="section content-section">
+    <div class="container max-w-4xl">
+      <!-- Intro Card -->
+      <div
+        class="glass-card mb-20 p-10 md:p-14 text-center animate-fade-in-up animate-delay-300 relative overflow-hidden"
+      >
+        <div
+          class="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-accent to-transparent opacity-50"
+        >
+        </div>
+        <h2
+          class="text-4xl md:text-5xl text-accent mb-8 font-display font-bold uppercase tracking-wide"
+        >
+          41 ans de passion
+        </h2>
+        <div class="max-w-3xl mx-auto">
+          <p
+            class="text-xl md:text-2xl text-text-primary leading-relaxed mb-8 font-light"
+          >
+            Ont forgé le talent de <strong class="text-accent font-semibold"
+              >DJ Steef Line Sono</strong
+            >. Des clubs huppés de la capitale aux bars branchés de la côte
+            Basque, il a imposé son style, fidèle à ses platines CD, gage d’une
+            qualité sonore irréprochable.
+          </p>
+          <div class="w-24 h-px bg-glass-border mx-auto mb-8"></div>
+          <p class="text-lg text-text-secondary leading-relaxed">
+            Stéphane accorde une importance capitale à la satisfaction de sa
+            clientèle. Avant chaque prestation, il prend le temps d’échanger
+            avec ses clients afin de composer une playlist sur mesure,
+            parfaitement adaptée à l’ambiance souhaitée. Cette minutieuse
+            préparation garantit une performance musicale en parfaite harmonie
+            avec l’événement.
+          </p>
+        </div>
+      </div>
+
+      <!-- Features Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24 relative">
+        <!-- Decorative subtle background line combining the three boxes -->
+        <div
+          class="hidden md:block absolute top-[60px] left-[16%] right-[16%] h-px bg-glass-border z-0"
+        >
+        </div>
+
+        <!-- Profil Artistique -->
+        <div
+          class="glass flex flex-col p-8 rounded-2xl hover:-translate-y-2 transition-all duration-300 hover:shadow-[0_0_30px_rgba(234,179,8,0.1)] relative z-10 group bg-bg-primary/80"
+        >
+          <div
+            class="text-accent mb-6 bg-glass p-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300 shadow-[0_0_15px_rgba(234,179,8,0.2)]"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><path d="M12 2v20"></path><path
+                d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+              ></path></svg
+            >
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-center font-display">
+            Profil Artistique
+          </h3>
+          <p class="text-text-secondary text-base leading-relaxed text-center">
+            La carrière de DJ STEEF LINE est jalonnée d’accomplissements
+            remarquables, allant des lieux les plus tendance et insolites à
+            l’organisation de soirées exclusives pour une clientèle variée et
+            éclectique.
+          </p>
+        </div>
+
+        <!-- Talentueux -->
+        <div
+          class="glass flex flex-col p-8 rounded-2xl hover:-translate-y-2 transition-all duration-300 hover:shadow-[0_0_30px_rgba(234,179,8,0.1)] relative z-10 group bg-bg-primary/80"
+        >
+          <div
+            class="text-accent mb-6 bg-glass p-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300 shadow-[0_0_15px_rgba(234,179,8,0.2)]"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><polygon
+                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+              ></polygon></svg
+            >
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-center font-display">
+            Talentueux
+          </h3>
+          <p class="text-text-secondary text-base leading-relaxed text-center">
+            À l’âge de 17 ans, sa passion pour le funk le pousse à côtoyer les
+            meilleurs DJ parisiens. Il met un point d’honneur à perfectionner
+            ses talents, se faisant un nom de Paris au Sud-Ouest.
+          </p>
+        </div>
+
+        <!-- Audacieux -->
+        <div
+          class="glass flex flex-col p-8 rounded-2xl hover:-translate-y-2 transition-all duration-300 hover:shadow-[0_0_30px_rgba(234,179,8,0.1)] relative z-10 group bg-bg-primary/80"
+        >
+          <div
+            class="text-accent mb-6 bg-glass p-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300 shadow-[0_0_15px_rgba(234,179,8,0.2)]"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline
+                points="22 4 12 14.01 9 11.01"></polyline></svg
+            >
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-center font-display">
+            Audacieux
+          </h3>
+          <p class="text-text-secondary text-base leading-relaxed text-center">
+            Connu pour briser les barrières, il s’est aventuré en Allemagne,
+            Suisse, Espagne, Belgique et aux États-Unis. Il divertit tous les
+            publics : electro jazz, funk, deep house, dance ou années 80'-90'.
+          </p>
+        </div>
+      </div>
+
+      <!-- Testimonial / Presse -->
+      <div class="mb-24 relative max-w-3xl mx-auto">
+        <div
+          class="absolute -inset-1 bg-linear-to-r from-accent/0 via-accent/30 to-accent/0 rounded-2xl blur-lg opacity-50"
+        >
+        </div>
+        <div
+          class="glass-card relative p-10 md:p-14 text-center rounded-2xl border-t border-accent/20"
+        >
+          <svg
+            class="absolute top-6 left-6 w-12 h-12 text-accent/20"
+            fill="currentColor"
+            viewBox="0 0 32 32"
+            aria-hidden="true"
+            ><path
+              d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"
+            ></path></svg
+          >
+          <svg
+            class="absolute bottom-6 right-6 w-12 h-12 text-accent/20 rotate-180"
+            fill="currentColor"
+            viewBox="0 0 32 32"
+            aria-hidden="true"
+            ><path
+              d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"
+            ></path></svg
+          >
+
+          <h3
+            class="text-sm font-bold mb-8 uppercase tracking-[0.2em] text-accent"
+          >
+            Magazine de la ville de Bayonne
+          </h3>
+          <blockquote
+            class="text-xl md:text-2xl italic text-text-primary leading-relaxed relative z-10 font-light"
+          >
+            Son expérience éclectique du monde de la nuit, de différentes
+            ambiances et manifestations, une oreille attentive à tous les styles
+            de création musicale, d’hier à aujourd’hui, une personnalité unique
+            dans ce métier, garantissent une soirée forcément réussie et
+            inoubliable.
+          </blockquote>
+        </div>
+      </div>
+
+      <!-- Intervention Area -->
+      <div class="text-center mt-16 mb-8">
+        <h2 class="text-2xl font-bold mb-4">
+          Nous intervenons partout en Nouvelle Aquitaine
+        </h2>
+        <p class="text-text-muted max-w-2xl mx-auto mb-8">
+          Bayonne, Anglet, Biarritz, Pau, Dax, Mont-de-Marsan, Biscarosse,
+          Bordeaux, Toulouse, île de Ré, La Rochelle, Bergerac, Auch, Agen,
+          San-Sébastian…
+        </p>
+        <a href="/contact" class="btn btn-primary"
+          >Réalisez votre devis sur mesure</a
+        >
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    height: 60vh;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .page-title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    margin-bottom: 1rem;
+    color: white;
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1.1;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+    letter-spacing: -0.02em;
+  }
+  .page-subtitle {
+    font-size: clamp(1.25rem, 3vw, 2rem);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+  }
+</style>

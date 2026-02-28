@@ -1,0 +1,217 @@
+---
+/**
+ * Page Particuliers - DJ Steef Line Sono
+ */
+import Layout from "@/layouts/Layout.astro";
+import { getEntry } from "astro:content";
+
+const company = await getEntry("config", "company");
+
+const services = [
+  {
+    title: "Mariage",
+    description:
+      "Organisation et animation de tout type de mariage, quelle que soit la confession religieuse. Un accompagnement sur mesure pour le plus beau jour de votre vie.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"></path></svg>`,
+  },
+  {
+    title: "Anniversaire",
+    description:
+      "Vous souhaitez organiser et offrir une soirée inoubliable pour Madame, Monsieur ou vos enfants ? Plusieurs formules et thèmes vous sont proposés.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"></path><path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1"></path><path d="M2 21h20"></path><path d="M7 8v3"></path><path d="M12 8v3"></path><path d="M17 8v3"></path><path d="M7 4h.01"></path><path d="M12 4h.01"></path><path d="M17 4h.01"></path></svg>`,
+  },
+  {
+    title: "Baptême",
+    description:
+      "Parce que c’est un moment unique dont le succès dépend de la délicatesse de l’ambiance, nous vous fournissons une prestation musicale à la hauteur de cet événement.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>`,
+  },
+  {
+    title: "Soirée privée",
+    description:
+      "Votre événement en villa privatisée avec un DJ à votre écoute. Une musique adaptée au lieu, et possibilité de location de mobilier et lumières (barriques, guirlandes, etc).",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`,
+  },
+];
+
+const features = [
+  {
+    title: "Événements privatisés",
+    description:
+      "Je transforme vos moments privés en expériences inoubliables. J’apporte mon expertise musicale et mon équipement de pointe pour créer une ambiance sur mesure. Je vous offre un service personnalisé et une sélection musicale raffinée qui s’adapte parfaitement à vos goûts et à l’atmosphère que vous souhaitez.",
+  },
+  {
+    title: "Soirée familiale",
+    description:
+      "Je rassemble vos proches autour d’une soirée musicale exceptionnelle. En tant que DJ Steef Line Sono, je sais créer une ambiance chaleureuse et conviviale qui plaira à toutes les générations. De la playlist soigneusement élaborée à mon animation discrète et professionnelle, je pense chaque détail pour que votre soirée soit un moment de partage et de joie inoubliable.",
+  },
+  {
+    title: "Soirée cocktails",
+    description:
+      "J’ajoute une touche d’élégance à votre soirée cocktails avec mes prestations haut de gamme. J’excelle dans l’art de créer une atmosphère sophistiquée, mêlant subtilement musique d’ambiance et rythmes entraînants. Mon expertise garantit une expérience sonore parfaitement adaptée à l’ambiance feutrée et chic de votre événement.",
+  },
+];
+---
+
+<Layout
+  title={`Prestations Particuliers | ${company?.data.name}`}
+  description="Prestations DJ sur mesure pour mariages, anniversaires, baptêmes et soirées privées en Nouvelle-Aquitaine."
+>
+  <!-- Hero Section -->
+  <section class="section page-header relative overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img
+        src="/images/wedding-dj-party.png"
+        alt="DJ pour Mariage et Soirées Privées"
+        class="w-full h-full object-cover filter brightness-50"
+        onerror="this.src='/images/service-particuliers.png'"
+      />
+      <div
+        class="absolute inset-0 bg-linear-to-b from-black/80 via-black/50 to-bg-primary"
+      >
+      </div>
+    </div>
+
+    <div class="container relative z-10 text-center">
+      <h1 class="page-title animate-fade-in-up">Prestations Particuliers</h1>
+      <p class="page-subtitle animate-fade-in-up animate-delay-200">
+        Sublimez vos moments précieux
+      </p>
+    </div>
+  </section>
+
+  <section class="section content-section">
+    <div class="container max-w-5xl">
+      <!-- Intro text -->
+      <div class="text-center mb-20 animate-fade-in-up animate-delay-300">
+        <p
+          class="text-xl md:text-2xl text-text-primary leading-relaxed mb-6 font-light max-w-4xl mx-auto"
+        >
+          Jouissant d’une forte renommée à travers toute l’Aquitaine et le
+          Midi-Pyrénées, <strong class="text-accent font-semibold"
+            >Steef Line Sono</strong
+          > anime l’ensemble de vos événements pour faire de votre soirée un moment
+          inoubliable.
+        </p>
+        <div class="w-16 h-1 bg-accent mx-auto rounded-full"></div>
+      </div>
+
+      <!-- Services List (Mariage, Anniversaire...) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
+        {
+          services.map((service, index) => (
+            <div
+              class={`glass p-8 rounded-2xl border border-glass-border hover:border-accent/40 transition-colors duration-300 animate-fade-in-up animate-delay-${(index + 2) * 100}`}
+            >
+              <div class="text-accent mb-6 bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center">
+                <Fragment set:html={service.icon} />
+              </div>
+              <h3 class="text-2xl font-display font-bold mb-4">
+                {service.title}
+              </h3>
+              <p class="text-text-secondary leading-relaxed">
+                {service.description}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Detail Features (Événements clés en main) -->
+      <div
+        class="glass-card mb-24 p-8 md:p-14 rounded-3xl relative overflow-hidden border-t border-glass-border"
+      >
+        <div
+          class="absolute inset-0 bg-linear-to-br from-accent/5 to-transparent pointer-events-none"
+        >
+        </div>
+        <div class="relative z-10">
+          <div class="text-center mb-16">
+            <h2
+              class="text-3xl md:text-4xl text-text-primary font-display font-bold mb-4"
+            >
+              Vos Événements Clés en Main
+            </h2>
+            <p
+              class="text-accent text-lg uppercase tracking-widest font-semibold"
+            >
+              Prestations personnalisées
+            </p>
+          </div>
+
+          <div class="space-y-12">
+            {
+              features.map((feature, idx) => (
+                <div
+                  class="flex flex-col md:flex-row gap-6 md:gap-12 items-start opacity-0 animate-fade-in-up"
+                  style={`animation-delay: ${idx * 200 + 400}ms; animation-fill-mode: forwards;`}
+                >
+                  <div class="md:w-1/3 shrink-0">
+                    <h3 class="text-2xl font-bold text-accent border-l-4 border-accent pl-4 py-1">
+                      {feature.title}
+                    </h3>
+                  </div>
+                  <div class="md:w-2/3">
+                    <p class="text-text-secondary leading-relaxed text-lg">
+                      {feature.description}
+                    </p>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Zone -->
+      <div class="text-center mb-12 relative">
+        <div class="absolute -inset-4 bg-accent/5 blur-2xl rounded-full z-0">
+        </div>
+        <div class="relative z-10">
+          <h2 class="text-3xl font-bold mb-6 font-display">
+            Prêt à créer l'événement de vos rêves ?
+          </h2>
+          <p class="text-text-secondary max-w-2xl mx-auto mb-10 text-lg">
+            Nous intervenons partout en Nouvelle-Aquitaine (Bayonne, Anglet,
+            Biarritz, Pau, Dax, Bordeaux, Toulouse...)
+          </p>
+          <a
+            href="/contact"
+            class="btn btn-primary text-lg px-8 py-4 shadow-[0_0_20px_rgba(234,179,8,0.3)] hover:shadow-[0_0_30px_rgba(234,179,8,0.5)] transition-shadow"
+          >
+            Réaliser votre devis sur mesure
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    height: 50vh;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .page-title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    margin-bottom: 1rem;
+    color: white;
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1.1;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+    letter-spacing: -0.02em;
+  }
+  .page-subtitle {
+    font-size: clamp(1.25rem, 3vw, 2rem);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+  }
+</style>

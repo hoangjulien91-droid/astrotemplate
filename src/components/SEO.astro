@@ -28,12 +28,14 @@ interface Props {
 
 // SSOT: Company data from Content Collections
 const company = await getEntry("config", "company");
-const siteUrl = company?.data.siteUrl || "https://remicapdeville.fr";
-const siteName = company?.data.name || "Rémi Capdeville";
+const siteUrl = company?.data.siteUrl || "https://steeflinesono.fr";
+const siteName = company?.data.name || "DJ Steef Line Sono";
 
 const {
-  title = company?.data.defaultTitle || "Rémi Capdeville | Vidéaste",
-  description = company?.data.defaultDescription || "Vidéaste professionnel",
+  title = company?.data.defaultTitle ||
+    "DJ Steef Line Sono | Créateur d'événements",
+  description = company?.data.defaultDescription ||
+    "DJ Professionnel en Nouvelle-Aquitaine",
   canonical = Astro.url.href,
   ogImage = company?.data.defaultImage || "/og-image.jpg",
   ogType = "website",
@@ -82,7 +84,7 @@ const fullOgImage = ogImage.startsWith("http")
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={fullOgImage} />
 
-<!-- JSON-LD Schema.org: Person (Vidéaste) -->
+<!-- JSON-LD Schema.org: Person (DJ) -->
 <Schema
   item={{
     "@context": "https://schema.org",
@@ -92,11 +94,11 @@ const fullOgImage = ogImage.startsWith("http")
     url: siteUrl,
     image: fullOgImage,
     description: company?.data.description,
-    jobTitle: "Vidéaste Professionnel",
+    jobTitle: "DJ Professionnel",
     sameAs: [
-      company?.data.social?.youtube,
+      company?.data.social?.facebook,
       company?.data.social?.instagram,
-    ].filter(Boolean),
+    ].filter(Boolean) as string[],
   }}
 />
 

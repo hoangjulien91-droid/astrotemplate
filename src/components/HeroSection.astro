@@ -1,0 +1,241 @@
+---
+/**
+ * S-TIER — Hero Section Component
+ * Immersive Hero with background image/video and glassmorphism overlay
+ */
+import { getEntry } from "astro:content";
+
+interface Props {
+  bgImageSrc?: string;
+  bgVideoSrc?: string;
+  title?: string;
+  subtitle?: string;
+}
+
+const company = await getEntry("config", "company");
+
+const {
+  bgImageSrc = "/dj_hero_background.webp", // Fallback to generated image
+  bgVideoSrc = "", // Optional video override
+  title = "Créateur d’événements en Nouvelle-Aquitaine",
+  subtitle = "Mariages, Anniversaires, Soirées Privées & Entreprises",
+} = Astro.props;
+---
+
+<section class="hero-section" transition:name="hero">
+  <!-- Background Video or Image -->
+  {
+    bgVideoSrc ? (
+      <video class="hero-section__bg" autoplay muted loop playsinline>
+        <source src={bgVideoSrc} type="video/webm" />
+      </video>
+    ) : (
+      <div
+        class="hero-section__bg hero-section__bg--image"
+        style={`background-image: url('${bgImageSrc}');`}
+        role="img"
+        aria-label="DJ professionnel en action"
+      />
+    )
+  }
+
+  <!-- Gradient Overlay -->
+  <div class="hero-section__overlay"></div>
+
+  <!-- Content (Center) -->
+  <div class="hero-section__content">
+    <div class="hero-section__badge animate-fade-in-up">
+      <span>{company?.data.name}</span>
+    </div>
+
+    <h1 class="hero-section__title animate-fade-in-up animate-delay-200">
+      {title}
+    </h1>
+
+    <p class="hero-section__subtitle animate-fade-in-up animate-delay-300">
+      {subtitle}
+    </p>
+
+    <!-- CTA Buttons -->
+    <div class="hero-section__cta animate-fade-in-up animate-delay-400">
+      <a href="/particuliers" class="btn btn-primary">
+        Découvrir mes prestations
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M5 12h14"></path>
+          <path d="m12 5 7 7-7 7"></path>
+        </svg>
+      </a>
+      <a href="/contact" class="btn btn-ghost">Demander un devis</a>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="hero-section__scroll">
+    <div class="hero-section__scroll-line"></div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const video = document.querySelector(
+      ".hero-section__bg",
+    ) as HTMLVideoElement;
+    if (video && video.tagName === "VIDEO") {
+      video.currentTime = 0;
+      video.play().catch(() => {});
+    }
+  });
+</script>
+
+<style>
+  .hero-section {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-section__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .hero-section__bg--image {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: brightness(0.9);
+  }
+
+  .hero-section__overlay {
+    position: absolute;
+    inset: 0;
+    /* Cinematic dark gradient with a slight amber tint */
+    background: linear-gradient(
+      to bottom,
+      rgba(10, 10, 10, 0.7) 0%,
+      rgba(10, 10, 10, 0.4) 40%,
+      rgba(10, 10, 10, 0.5) 70%,
+      rgba(10, 10, 10, 0.95) 100%
+    );
+    z-index: 1;
+  }
+
+  .hero-section__content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-section__badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: 2rem;
+    color: var(--color-accent);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 2rem;
+  }
+
+  .hero-section__title {
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  }
+
+  .hero-section__subtitle {
+    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+    color: var(--color-text-secondary);
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    font-weight: 400;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .hero-section__cta {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hero-section__scroll {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+
+  .hero-section__scroll-line {
+    width: 2px;
+    height: 70px;
+    background: linear-gradient(
+      to bottom,
+      var(--color-accent) 0%,
+      transparent 100%
+    );
+    animation: scrollPulse 2s ease-in-out infinite;
+    border-radius: 2px;
+  }
+
+  @keyframes scrollPulse {
+    0%,
+    100% {
+      opacity: 0.3;
+      transform: scaleY(0.5);
+      transform-origin: top;
+    }
+    50% {
+      opacity: 1;
+      transform: scaleY(1);
+      transform-origin: top;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-section__cta {
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-section__cta .btn {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+</style>

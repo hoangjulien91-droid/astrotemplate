@@ -1,24 +1,23 @@
 {
-  "name": "Rémi Capdeville",
-  "legalName": "Rémi Capdeville - Vidéaste",
-  "description": "Vidéaste professionnel passionné par l'image et la narration visuelle. Création de contenus vidéo cinématiques pour marques, événements et projets créatifs.",
+  "name": "DJ Steef Line Sono",
+  "legalName": "Stéphane Dardy",
+  "description": "DJ professionnel en Nouvelle-Aquitaine depuis plus de 41 ans. Créateur d’événements sur mesure : mariages, soirées privées, événements d’entreprise.",
   
-  "email": "remicapdev@gmail.com",
-  "phone": "06 20 76 16 15",
+  "email": "steefline@orange.fr",
+  "phone": "06 27 48 24 33",
   "address": {
-    "street": "",
-    "city": "France",
-    "postalCode": "",
+    "street": "3 Rue du Pont de l’Aveugle",
+    "city": "Anglet",
+    "postalCode": "64600",
     "country": "France"
   },
   
   "social": {
-    "youtube": "https://www.youtube.com/@RémiCapdeville",
-    "instagram": "https://www.instagram.com/remicapdeville/"
+    "facebook": "https://www.facebook.com/steeflinesono/"
   },
   
-  "siteUrl": "https://remicapdeville.fr",
-  "defaultTitle": "Rémi Capdeville | Vidéaste Professionnel",
-  "defaultDescription": "Vidéaste professionnel spécialisé dans la création de contenus cinématiques. Découvrez mon portfolio et mes réalisations vidéo.",
+  "siteUrl": "https://steeflinesono.fr",
+  "defaultTitle": "DJ Steef Line Sono | Créateur d'événements en Nouvelle-Aquitaine",
+  "defaultDescription": "Stéphane Dardy, DJ professionnel en Aquitaine pour mariages, anniversaires et soirées privées. Plus de 35 ans d'expérience.",
   "defaultImage": "/og-image.jpg"
 }

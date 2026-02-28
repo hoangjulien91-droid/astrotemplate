@@ -1,0 +1,224 @@
+---
+/**
+ * S-TIER — About Stéphane Dardy Component
+ * Presentation section highlighting 41 years of experience
+ */
+import { getEntry } from "astro:content";
+
+const company = await getEntry("config", "company");
+---
+
+<section class="section about-section" id="a-propos">
+  <div class="container about-container">
+    <!-- Image Side -->
+    <div class="about-image-wrapper animate-fade-in-up">
+      <div class="about-image-frame glass">
+        <img
+          src="/images/stephane-portrait.png"
+          alt="Stéphane Dardy - DJ Professionnel"
+          class="about-image"
+          loading="lazy"
+          onerror="this.src='/images/service-particuliers.png'"
+        />
+
+        <!-- Experience Badge -->
+        <div class="experience-badge glass-card">
+          <span class="experience-number">41</span>
+          <span class="experience-text">Ans d'expérience</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content Side -->
+    <div class="about-content animate-fade-in-up animate-delay-200">
+      <header class="section-header about-header">
+        <h2 class="section-title">Stéphane Dardy</h2>
+        <p class="section-subtitle">DJ Professionnel en Aquitaine</p>
+      </header>
+
+      <div class="about-text">
+        <p>
+          Je suis Stéphane Dardy, DJ et organisateur d’événements depuis plus de
+          41 ans. Passionné par la musique, j’ai eu le privilège d’animer <strong
+            >plus de 3000 événements</strong
+          > à travers toute la Nouvelle-Aquitaine.
+        </p>
+        <p>
+          Que ce soit pour des mariages, des anniversaires, des soirées privées,
+          ou encore des événements d’entreprise, je m’engage à rendre chaque
+          moment unique et inoubliable avec une expertise musicale
+          personnalisée.
+        </p>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-item">
+          <h4 class="stat-number">3000+</h4>
+          <p class="stat-label">Événements réussis</p>
+        </div>
+        <div class="stat-item">
+          <h4 class="stat-number">100%</h4>
+          <p class="stat-label">Sur-mesure</p>
+        </div>
+      </div>
+
+      <div class="about-cta">
+        <a href="/contact" class="btn btn-primary">Me contacter</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .about-container {
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+    }
+  }
+
+  /* Image Side */
+  .about-image-wrapper {
+    position: relative;
+    padding: 1rem;
+  }
+
+  .about-image-frame {
+    position: relative;
+    border-radius: 1.5rem;
+    padding: 1rem;
+    background: var(--glass-bg);
+  }
+
+  .about-image {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    border-radius: 1rem;
+    filter: sepia(0.2) contrast(1.1); /* Subtle premium tint */
+  }
+
+  /* Experience Badge */
+  .experience-badge {
+    position: absolute;
+    bottom: -2rem;
+    right: -1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    text-align: center;
+    background: rgba(15, 15, 15, 0.85);
+    backdrop-filter: blur(8px);
+    border: 2px solid var(--color-accent);
+    box-shadow:
+      0 15px 35px rgba(0, 0, 0, 0.6),
+      0 0 20px rgba(234, 179, 8, 0.2);
+    z-index: 2;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+  .experience-number {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--color-accent);
+    text-shadow: 0 0 10px rgba(234, 179, 8, 0.4);
+  }
+
+  .experience-text {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--color-text-primary);
+    margin-top: 0.25rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* Content Side */
+  .about-header {
+    text-align: left;
+    margin-bottom: 2rem;
+  }
+
+  .about-text {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+    margin-bottom: 2.5rem;
+  }
+
+  .about-text p {
+    margin-bottom: 1.25rem;
+  }
+
+  .about-text strong {
+    color: var(--color-text-primary);
+    font-weight: 600;
+  }
+
+  /* Stats Grid */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--glass-border);
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    margin-bottom: 0.25rem;
+  }
+
+  .stat-label {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 768px) {
+    .experience-badge {
+      width: 100px;
+      height: 100px;
+      bottom: -1rem;
+      right: 0;
+    }
+
+    .experience-number {
+      font-size: 2rem;
+    }
+
+    .experience-text {
+      font-size: 0.65rem;
+    }
+  }
+</style>

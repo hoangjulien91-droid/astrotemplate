@@ -1,6 +1,6 @@
 ---
 /**
- * Contact Page
+ * Page Contact - DJ Steef Line Sono
  */
 import Layout from "@/layouts/Layout.astro";
 import { getEntry } from "astro:content";
@@ -9,24 +9,49 @@ const company = await getEntry("config", "company");
 ---
 
 <Layout
-  title="Contact | Rémi Capdeville"
-  description="Contactez Rémi Capdeville pour discuter de votre projet vidéo."
+  title={`Contact | ${company?.data.name}`}
+  description="Une question, un projet événementiel ? Contactez Stéphane Dardy, DJ professionnel en Nouvelle-Aquitaine."
 >
-  <section class="hero-section">
-    <div class="container">
-      <h1 class="page-title">Contact</h1>
-      <p class="page-subtitle">Un projet en tête ? Parlons-en !</p>
+  <!-- Hero Section -->
+  <section class="section page-header relative overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img
+        src="/images/dj-contact-support.png"
+        alt="DJ Mixing Desk - Contact Steef Line Sono"
+        class="w-full h-full object-cover filter brightness-50"
+        onerror="this.src='/images/dj_hero_background.png'"
+      />
+      <div
+        class="absolute inset-0 bg-linear-to-b from-black/80 via-black/50 to-bg-primary"
+      >
+      </div>
+    </div>
+
+    <div class="container relative z-10 text-center">
+      <h1 class="page-title animate-fade-in-up">Contactez-moi</h1>
+      <p class="page-subtitle animate-fade-in-up animate-delay-200">
+        Une question ? Un projet événementiel ?
+      </p>
     </div>
   </section>
 
-  <section class="section contact-section">
+  <section class="section content-section">
     <div class="container">
+      
+      <!-- Intro text -->
+      <div class="text-center mb-16 animate-fade-in-up animate-delay-300">
+        <p class="text-lg md:text-xl text-text-primary leading-relaxed mb-6 font-light max-w-3xl mx-auto">
+          Une demande d’information, un devis sur mesure… Un premier contact téléphonique permettra de mieux définir vos attentes, vos désirs, et vos choix musicaux pour garantir le succès de votre événement.
+        </p>
+        <div class="w-16 h-1 bg-accent mx-auto rounded-full"></div>
+      </div>
+
       <div class="contact-grid">
         <!-- Contact Form -->
-        <div class="contact-form-wrapper glass-card">
-          <h2>Envoyez-moi un message</h2>
+        <div class="contact-form-wrapper glass-card animate-fade-in-up animate-delay-400">
+          <h2 class="text-2xl font-bold mb-6 font-display">Envoyez-moi un message</h2>
           <form
-            class="contact-form"
+            class="contact-form space-y-5"
             action="https://formspree.io/f/YOUR_FORM_ID"
             method="POST"
           >
@@ -55,11 +80,12 @@ const company = await getEntry("config", "company");
             <div class="form-group">
               <label for="subject">Sujet</label>
               <select id="subject" name="subject" required>
-                <option value="">Sélectionnez un sujet</option>
-                <option value="corporate">Vidéo Corporate</option>
-                <option value="music">Clip Musical</option>
-                <option value="wedding">Film de Mariage</option>
-                <option value="event">Événementiel</option>
+                <option value="">Sélectionnez un type d'événement</option>
+                <option value="mariage">Mariage</option>
+                <option value="anniversaire">Anniversaire</option>
+                <option value="soiree_privee">Soirée Privée</option>
+                <option value="corporate">Événement d'entreprise</option>
+                <option value="location">Location de matériel</option>
                 <option value="other">Autre projet</option>
               </select>
             </div>
@@ -71,16 +97,16 @@ const company = await getEntry("config", "company");
                 name="message"
                 rows="5"
                 required
-                placeholder="Décrivez votre projet..."></textarea>
+                placeholder="Décrivez votre projet (date, lieu, nombre d'invités)..."></textarea>
             </div>
 
             <!-- Honeypot anti-spam -->
-            <div class="form-group" style="display: none;">
+            <div class="form-group hidden">
               <input type="text" name="_gotcha" />
             </div>
 
-            <button type="submit" class="btn btn-primary btn-full">
-              Envoyer le message
+            <button type="submit" class="btn btn-primary btn-full mt-4 flex items-center justify-center gap-2">
+              Envoyer la demande
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -100,128 +126,102 @@ const company = await getEntry("config", "company");
         </div>
 
         <!-- Contact Info -->
-        <div class="contact-info">
+        <div class="contact-info animate-fade-in-up animate-delay-500">
           <div class="info-card glass-card">
-            <h3>Informations</h3>
+            <h3 class="text-xl font-bold mb-6 font-display text-accent">Coordonnées Directes</h3>
 
-            {
-              company?.data.email && (
-                <div class="info-item">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
+            {company?.data.email && (
+              <div class="info-item">
+                <div class="icon-wrapper">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="2" y="4" width="20" height="16" rx="2" />
                     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                   </svg>
-                  <a href={`mailto:${company.data.email}`}>
+                </div>
+                <div>
+                  <span class="block text-sm text-text-muted mb-1">Email</span>
+                  <a href={`mailto:${company.data.email}`} class="text-text-primary font-medium hover:text-accent transition-colors">
                     {company.data.email}
                   </a>
                 </div>
-              )
-            }
+              </div>
+            )}
 
-            {
-              company?.data.phone && (
-                <div class="info-item">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
+            {company?.data.phone && (
+              <div class="info-item">
+                <div class="icon-wrapper">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                   </svg>
-                  <a href={`tel:${company.data.phone}`}>{company.data.phone}</a>
                 </div>
-              )
-            }
+                <div>
+                  <span class="block text-sm text-text-muted mb-1">Téléphone</span>
+                  <a href={`tel:${company.data.phone.replace(/\s+/g, '')}`} class="text-text-primary text-lg font-bold hover:text-accent transition-colors">
+                    {company.data.phone}
+                  </a>
+                </div>
+              </div>
+            )}
 
-            <div class="info-item">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
-                <circle cx="12" cy="10" r="3"></circle>
-              </svg>
-              <span>{company?.data.address?.city || "France"}</span>
-            </div>
+            {company?.data.address && (
+              <div class="info-item border-none pb-0">
+                <div class="icon-wrapper">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                </div>
+                <div>
+                  <span class="block text-sm text-text-muted mb-1">Adresse</span>
+                  <span class="text-text-primary">
+                    {company.data.address.street}<br/>
+                    {company.data.address.postalCode} {company.data.address.city}
+                  </span>
+                </div>
+              </div>
+            )}
           </div>
 
           <!-- Social Links -->
-          <div class="social-card glass-card">
-            <h3>Réseaux Sociaux</h3>
-            <div class="social-links">
-              {
-                company?.data.social?.youtube && (
+          {(company?.data.social?.facebook || company?.data.social?.instagram) && (
+            <div class="social-card glass-card">
+              <h3 class="text-lg font-bold mb-4">Réseaux Sociaux</h3>
+              <div class="social-links">
+                {company?.data.social?.facebook && (
                   <a
-                    href={company.data.social.youtube}
+                    href={company.data.social.facebook}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="social-link"
-                    aria-label="YouTube"
+                    class="social-link facebook"
+                    aria-label="Facebook Steef Line Sono"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
                     </svg>
                   </a>
-                )
-              }
-              {
-                company?.data.social?.instagram && (
+                )}
+                {company?.data.social?.instagram && (
                   <a
                     href={company.data.social.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="social-link"
-                    aria-label="Instagram"
+                    class="social-link instagram"
+                    aria-label="Instagram Steef Line Sono"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                     </svg>
                   </a>
-                )
-              }
+                )}
+              </div>
             </div>
-          </div>
+          )}
 
           <!-- Response Time -->
-          <div class="response-card glass-card">
-            <h3>Délai de réponse</h3>
-            <p>
-              Je réponds généralement sous <strong>24-48 heures</strong> les jours
+          <div class="response-card glass-card bg-accent/5 border-l-4 border-l-accent">
+            <h3 class="text-lg font-bold mb-2">Délai de réponse</h3>
+            <p class="text-text-secondary leading-relaxed">
+              Je réponds généralement sous <strong class="text-accent">24 à 48 heures</strong> les jours
               ouvrés.
             </p>
           </div>
@@ -232,64 +232,71 @@ const company = await getEntry("config", "company");
 </Layout>
 
 <style>
-  .hero-section {
-    padding-top: 10rem;
-    padding-bottom: 4rem;
-    text-align: center;
+  .page-header {
+    height: 50vh;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-
   .page-title {
-    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 5.5rem);
     margin-bottom: 1rem;
+    color: white;
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1.1;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+    letter-spacing: -0.02em;
   }
-
   .page-subtitle {
-    font-size: 1.25rem;
-    color: var(--color-text-secondary);
+    font-size: clamp(1.25rem, 3vw, 2rem);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
   }
 
   /* Contact Grid */
   .contact-grid {
     display: grid;
     gap: 2rem;
+    align-items: flex-start;
   }
 
   @media (min-width: 1024px) {
     .contact-grid {
-      grid-template-columns: 1fr 380px;
+      grid-template-columns: 3fr 2fr;
       gap: 3rem;
     }
   }
 
-  /* Form */
-  .contact-form-wrapper h2 {
-    margin-bottom: 2rem;
-    font-size: 1.5rem;
-  }
-
-  .form-group {
-    margin-bottom: 1.5rem;
+  .contact-form-wrapper {
+    padding: 2.5rem;
   }
 
   .form-group label {
     display: block;
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: 0.5rem;
-    font-size: 0.9375rem;
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
   }
 
   .form-group input,
   .form-group select,
   .form-group textarea {
     width: 100%;
-    padding: 0.875rem 1rem;
+    padding: 1rem 1.25rem;
     font-family: inherit;
     font-size: 1rem;
-    background: var(--color-bg-primary);
+    background: rgba(0, 0, 0, 0.2);
     border: 1px solid var(--glass-border);
     border-radius: 0.5rem;
     color: var(--color-text-primary);
-    transition: border-color 0.2s ease;
+    transition: all 0.3s ease;
   }
 
   .form-group input:focus,
@@ -297,24 +304,31 @@ const company = await getEntry("config", "company");
   .form-group textarea:focus {
     outline: none;
     border-color: var(--color-accent);
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 0 2px rgba(234, 179, 8, 0.2);
   }
 
   .form-group input::placeholder,
   .form-group textarea::placeholder {
-    color: var(--color-text-muted);
+    color: rgba(255, 255, 255, 0.3);
   }
 
   .form-group select {
     cursor: pointer;
   }
+  .form-group select option {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+  }
 
   .form-group textarea {
     resize: vertical;
-    min-height: 120px;
   }
 
   .btn-full {
     width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
   }
 
   /* Info Cards */
@@ -323,42 +337,37 @@ const company = await getEntry("config", "company");
     flex-direction: column;
     gap: 1.5rem;
   }
-
-  .info-card h3,
-  .social-card h3,
-  .response-card h3 {
-    font-size: 1.125rem;
-    margin-bottom: 1rem;
+  
+  .info-card {
+    padding: 2.5rem;
   }
 
   .info-item {
     display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem 0;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
     border-bottom: 1px solid var(--glass-border);
-    color: var(--color-text-secondary);
   }
-
-  .info-item:last-child {
-    border-bottom: none;
-  }
-
-  .info-item svg {
+  
+  .icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(234, 179, 8, 0.1);
     color: var(--color-accent);
     flex-shrink: 0;
   }
 
-  .info-item a {
-    color: inherit;
-    transition: color 0.2s ease;
-  }
-
-  .info-item a:hover {
-    color: var(--color-accent);
-  }
-
   /* Social */
+  .social-card {
+    padding: 2rem 2.5rem;
+  }
+  
   .social-links {
     display: flex;
     gap: 1rem;
@@ -370,25 +379,24 @@ const company = await getEntry("config", "company");
     justify-content: center;
     width: 48px;
     height: 48px;
-    background: var(--color-bg-primary);
+    background: rgba(0, 0, 0, 0.3);
     border: 1px solid var(--glass-border);
     border-radius: 50%;
-    color: var(--color-text-secondary);
+    color: var(--color-text-primary);
     transition: all 0.3s ease;
   }
 
   .social-link:hover {
-    border-color: var(--color-accent);
-    color: var(--color-accent);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    color: white;
+    border-color: transparent;
   }
+  
+  .social-link.facebook:hover { background: #1877F2; }
+  .social-link.instagram:hover { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
 
   /* Response */
-  .response-card p {
-    line-height: 1.6;
-  }
-
-  .response-card strong {
-    color: var(--color-accent);
+  .response-card {
+    padding: 1.5rem 2.5rem;
   }
 </style>
