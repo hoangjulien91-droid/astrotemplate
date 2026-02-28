@@ -1,0 +1,121 @@
+---
+/**
+ * S-TIER+ — Portfolio Section
+ * Immersive video grid with premium responsive layout
+ */
+import YouTubeThumbnail from "./YouTubeThumbnail.astro";
+
+const videos = [
+  {
+    id: "lADS4VWAeKM",
+    title: "Lucie Sue - I Will Shit Where You Sleep (Official Music Video)",
+  },
+  {
+    id: "4ClGSCXyTfg",
+    title: "KRAFT 3 0 Into The Storm (Official Visualizer)",
+  },
+  {
+    id: "qC8CuwuvDQE",
+    title: "Lucie Sue - Reckless (Official video)",
+  },
+  {
+    id: "2P2aDhEmn8I",
+    title: "Lucie Sue - Burn your candles (official video)",
+  },
+  {
+    id: "J0nvKLQ4ENw",
+    title: "Nola – For Real | Cozy Live Session #1 (Piano-Voice Version)",
+  },
+];
+
+const featuredVideos = videos.slice(0, 2);
+const secondaryVideos = videos.slice(2, 5);
+---
+
+<div class="portfolio-section">
+  <!-- Featured Grid (2 Columns) -->
+  <div class="portfolio-grid portfolio-grid--featured">
+    {
+      featuredVideos.map((video, index) => (
+        <YouTubeThumbnail
+          videoId={video.id}
+          title={video.title}
+          class={`animate-fade-in-up animate-delay-${(index + 1) * 100}`}
+        />
+      ))
+    }
+  </div>
+
+  <!-- Secondary Grid (3 Columns) -->
+  <div class="portfolio-grid portfolio-grid--secondary">
+    {
+      secondaryVideos.map((video, index) => (
+        <YouTubeThumbnail
+          videoId={video.id}
+          title={video.title}
+          class={`animate-fade-in-up animate-delay-${(index + 3) * 100}`}
+        />
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .portfolio-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .portfolio-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  /* Featured Grid Styles */
+  .portfolio-grid--featured {
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 768px) {
+    .portfolio-grid--featured {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  /* Secondary Grid Styles */
+  .portfolio-grid--secondary {
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 640px) {
+    .portfolio-grid--secondary {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .portfolio-grid--secondary {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  /* Animation delays adjustment */
+  :global(.animate-delay-100) {
+    animation-delay: 0.1s;
+  }
+  :global(.animate-delay-200) {
+    animation-delay: 0.2s;
+  }
+  :global(.animate-delay-300) {
+    animation-delay: 0.3s;
+  }
+  :global(.animate-delay-400) {
+    animation-delay: 0.4s;
+  }
+  :global(.animate-delay-500) {
+    animation-delay: 0.5s;
+  }
+</style>

@@ -1,0 +1,240 @@
+---
+/**
+ * S-TIER+ — YouTube Thumbnail Component
+ * Premium high-performance thumbnail with "Ghost-Glass" effect
+ * Zero JS overhead, 16/9 aspect-ratio protection, immersive hover effects
+ */
+
+interface Props {
+  videoId: string;
+  title: string;
+  thumbnailQuality?: "default" | "mq" | "hq" | "sd" | "maxres";
+  class?: string;
+}
+
+const {
+  videoId,
+  title,
+  thumbnailQuality = "maxres",
+  class: className,
+} = Astro.props;
+
+// YouTube thumbnail URL
+const thumbnailUrl = `https://i.ytimg.com/vi/${videoId}/${thumbnailQuality}default.jpg`;
+const youtubeUrl = `https://www.youtube.com/watch?v=${videoId}`;
+---
+
+<a
+  href={youtubeUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+  class:list={["youtube-thumbnail glass", className]}
+  aria-label={`Regarder "${title}" sur YouTube`}
+>
+  <div class="youtube-thumbnail__wrapper">
+    <!-- Optimized Thumbnail -->
+    <img
+      src={thumbnailUrl}
+      alt={title}
+      class="youtube-thumbnail__image"
+      loading="lazy"
+      decoding="async"
+      width="1280"
+      height="720"
+    />
+
+    <!-- Overlays -->
+    <div class="youtube-thumbnail__overlay">
+      <!-- Play Button Ghost-Glass -->
+      <div class="play-button-glass">
+        <div class="play-button-glass__icon">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 5v14l11-7z"></path>
+          </svg>
+        </div>
+        <div class="play-button-glass__pulse"></div>
+      </div>
+
+      <!-- Title Preview -->
+      <div class="youtube-thumbnail__info glass">
+        <h3 class="youtube-thumbnail__title">{title}</h3>
+        <span class="youtube-thumbnail__platform">YouTube</span>
+      </div>
+    </div>
+  </div>
+</a>
+
+<style>
+  .youtube-thumbnail {
+    position: relative;
+    display: block;
+    border-radius: 1rem;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    background: var(--color-bg-secondary);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    isolation: isolate;
+  }
+
+  .youtube-thumbnail__wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .youtube-thumbnail__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  /* Ghost-Glass Overlay */
+  .youtube-thumbnail__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    background: radial-gradient(
+      circle at center,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.4) 100%
+    );
+    opacity: 0.8;
+    transition: opacity 0.4s ease;
+  }
+
+  /* Play Button Glass Design */
+  .play-button-glass {
+    position: relative;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
+  }
+
+  .play-button-glass__icon {
+    width: 2rem;
+    height: 2rem;
+    margin-left: 0.25rem; /* Optical center */
+  }
+
+  .play-button-glass__pulse {
+    position: absolute;
+    inset: -2px;
+    border: 1px solid var(--color-accent);
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(1);
+    animation: none;
+  }
+
+  /* Info Panel Ghost-Glass */
+  .youtube-thumbnail__info {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateY(10px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .youtube-thumbnail__title {
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: white;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .youtube-thumbnail__platform {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  /* HOVER EFFECTS */
+  .youtube-thumbnail:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: var(--color-accent);
+    box-shadow:
+      0 30px 60px rgba(0, 0, 0, 0.5),
+      0 0 20px rgba(245, 158, 11, 0.2);
+  }
+
+  .youtube-thumbnail:hover .youtube-thumbnail__image {
+    transform: scale(1.1);
+  }
+
+  .youtube-thumbnail:hover .youtube-thumbnail__overlay {
+    opacity: 1;
+    background: radial-gradient(
+      circle at center,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 0.6) 100%
+    );
+  }
+
+  .youtube-thumbnail:hover .play-button-glass {
+    transform: scale(1.15);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: var(--color-accent);
+    box-shadow: 0 0 30px rgba(245, 158, 11, 0.4);
+  }
+
+  .youtube-thumbnail:hover .play-button-glass__pulse {
+    animation: pulse 2s infinite;
+  }
+
+  .youtube-thumbnail:hover .youtube-thumbnail__info {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(1.8);
+      opacity: 0;
+    }
+  }
+
+  /* Accessibility and Performance */
+  @media (prefers-reduced-motion: reduce) {
+    .youtube-thumbnail,
+    .youtube-thumbnail__image,
+    .play-button-glass,
+    .play-button-glass__pulse,
+    .youtube-thumbnail__info {
+      transition: none;
+      animation: none;
+    }
+  }
+</style>
