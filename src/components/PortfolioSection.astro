@@ -5,6 +5,12 @@
  */
 import YouTubeThumbnail from "./YouTubeThumbnail.astro";
 
+interface Props {
+  limit?: number;
+}
+
+const { limit } = Astro.props;
+
 const videos = [
   {
     id: "lADS4VWAeKM",
@@ -36,8 +42,11 @@ const videos = [
   },
 ];
 
-const featuredVideos = videos.slice(0, 2);
-const secondaryVideos = videos.slice(2, 7);
+// Apply limit if specified
+const displayedVideos = limit ? videos.slice(0, limit) : videos;
+
+const featuredVideos = displayedVideos.slice(0, 2);
+const secondaryVideos = displayedVideos.slice(2, 7);
 ---
 
 <div class="portfolio-section">

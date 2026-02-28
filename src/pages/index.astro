@@ -23,7 +23,7 @@ const company = await getEntry("config", "company");
         <p class="section-subtitle">Une sélection de mes projets récents</p>
       </header>
 
-      <PortfolioSection />
+      <PortfolioSection limit={5} />
 
       <div class="section-cta">
         <a href="/portfolio" class="btn btn-ghost">
