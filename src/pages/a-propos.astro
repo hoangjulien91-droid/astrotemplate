@@ -48,15 +48,23 @@ const equipment = [
   <section class="section about-section">
     <div class="container">
       <div class="about-grid">
-        <!-- Portrait placeholder -->
-        <div class="about-portrait">
-          <div class="portrait-placeholder">
-            <span class="portrait-initials">RC</span>
+        <!-- Portrait S-Tier+ -->
+        <div class="about-portrait animate-fade-in-up">
+          <div class="portrait-glass">
+            <img
+              src="/images/remicapdeville.webp"
+              alt="Rémi Capdeville"
+              class="portrait-image"
+              loading="eager"
+              width="400"
+              height="500"
+            />
+            <div class="portrait-glow"></div>
           </div>
         </div>
 
         <!-- Bio -->
-        <div class="about-content">
+        <div class="about-content animate-fade-in-up animate-delay-200">
           <h2>Mon Histoire</h2>
           <p>
             Passionné par l'image et la narration visuelle depuis mon plus jeune
@@ -199,28 +207,53 @@ const equipment = [
     }
   }
 
-  /* Portrait */
+  /* Portrait S-Tier+ */
   .about-portrait {
     display: flex;
     justify-content: center;
+    position: relative;
+    z-index: 2;
   }
 
-  .portrait-placeholder {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
+  .portrait-glass {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    aspect-ratio: 4 / 5;
+    border-radius: 2rem;
+    overflow: hidden;
     background: var(--glass-bg);
-    border: 2px solid var(--glass-border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
-  .portrait-initials {
-    font-family: var(--font-display);
-    font-size: 4rem;
-    font-weight: 700;
-    color: var(--color-accent);
+  .portrait-glass:hover {
+    transform: translateY(-10px) rotate(1deg);
+  }
+
+  .portrait-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(1.1) contrast(1.1);
+    transition: transform 0.8s ease;
+  }
+
+  .portrait-glass:hover .portrait-image {
+    transform: scale(1.05);
+  }
+
+  .portrait-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at 20% 20%,
+      rgba(245, 158, 11, 0.15) 0%,
+      transparent 50%
+    );
+    pointer-events: none;
+    z-index: 1;
   }
 
   /* Bio */
