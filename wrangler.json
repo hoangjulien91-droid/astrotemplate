@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "remi-capdeville",
+  "name": "steefline",
   "compatibility_date": "2026-01-13",
   "assets": {
     "directory": "./dist"
