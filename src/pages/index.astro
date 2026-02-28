@@ -5,7 +5,7 @@
  */
 import Layout from "@/layouts/Layout.astro";
 import VideoHero from "@/components/VideoHero.astro";
-import PortfolioGrid from "@/components/PortfolioGrid.astro";
+import PortfolioSection from "@/components/PortfolioSection.astro";
 import { getEntry } from "astro:content";
 
 const company = await getEntry("config", "company");
@@ -23,7 +23,7 @@ const company = await getEntry("config", "company");
         <p class="section-subtitle">Une sélection de mes projets récents</p>
       </header>
 
-      <PortfolioGrid featured={true} limit={3} />
+      <PortfolioSection />
 
       <div class="section-cta">
         <a href="/portfolio" class="btn btn-ghost">
